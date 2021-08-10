@@ -1,20 +1,13 @@
 #!/usr/bin/env perl
 
-die "Not ready yet\n";
-
 use File::Basename;
 use String::ShellQuote qw(shell_quote);
-
-die "Need git\n" unless -f '/usr/bin/git';
-die "Need unzip\n" unless -f '/usr/bin/unzip';
-die "Need tar\n" unless -f '/usr/bin/tar';
-die "Need wget\n" unless -f '/usr/bin/wget';
 
 if (! $ENV{USER} eq 'root') {
   die "Run as a regular user\n";
 }
 
-print "Running as $ENV{USER}\n";
+die "gourmet-formalog already exists\n" if -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor') {
   print "CREATING /var/lib/myfrdcsa/codebases/minor\n";
@@ -37,21 +30,25 @@ if ($cwd ne '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/') {
 print "MAKING DIRECTORIES\n";
 system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process';
 system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes';
-system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
 
 print "DOWNLOADING\n";
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/FoodData_Central_csv_2019-12-17.zip') {
   print "DOWNLOADING FOODDATA CENTRAL CSV 2019-12-17\n";
   system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2019-12-17.zip';
 }
+
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.pl') {
   print "DOWNLOADING MEALMASTER RECIPE ARCHIVE\n";
   system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl';
 }
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/WNprolog-3.1.tar.gz') {
-  print "DOWNLOADING WNPROLOG-3.1\n";
+
+if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/') {
+  print "CLONING WNPROLOG-3.1\n";
   # actually get it from here if possible instead: https://github.com/ekaf/wordnet-prolog
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet && wget https://frdcsa.org/~andrewdo/gourmet/WNprolog-3.1.tar.gz';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts && git clone https://github.com/ekaf/wordnet-prolog';
+  system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet-prolog /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet && ln -s wordnet/wnprolog.pl .';
+  system 'cp /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/to-wordnet/* /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
 }
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.qlf') {
@@ -73,7 +70,6 @@ if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/pro
   print "EXTRACTING Prolog WordNet\n";
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/ && tar -xzf WNprolog-3.1.tar.gz";
 }
-
 
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer') {
   die "Gourmet-formalog is not in the correct dir, should be placed into /var/lib/myfrdcsa/codebases/minor/gourmet-formalog\n";
@@ -97,6 +93,7 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
 	  ];
 	foreach my $command (@$commands) {
 	  print $command."\n";
+	  system $command;
 	}
       } else {
 	die "Target file already exists: <$destinationfile>\n";
@@ -106,4 +103,3 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
     }
   }
 }
-
