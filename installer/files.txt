@@ -1,0 +1,16 @@
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/util.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/shell-utils.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/regex.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/util.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/shell-utils.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/regex.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/profile.pl
+installer/var/lib/myfrdcsa/codebases/minor/dialog-interface/frdcsa/sys/flp/dialog_interface_dcg.pl
+installer/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/algorithms.pl
+installer/var/lib/myfrdcsa/codebases/minor/universal-parser/languages/dcg/parseDialogInterfaceQueries.pl
+installer/var/lib/myfrdcsa/codebases/minor/dialog-interface/frdcsa/sys/flp/generate_response.pl
+installer/var/lib/myfrdcsa/codebases/minor/dialog-interface/frdcsa/sys/flp/world_knowledge.pl
+installer/var/lib/myfrdcsa/codebases/minor/dialog-interface/frdcsa/sys/flp/dialog/query.pl
+installer/var/lib/myfrdcsa/codebases/minor/dialog-interface/frdcsa/sys/flp/dialog/response.pl
+installer/var/lib/myfrdcsa/codebases/minor/dialog-interface/frdcsa/sys/flp/dialog/triggers.pl
+installer/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/max_value.pl
