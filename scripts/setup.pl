@@ -24,10 +24,10 @@ print "MAKING DIRECTORIES\n";
 system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process';
 system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes';
 
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('julian',[interactive(false)]).\" -t halt";
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('regex',[interactive(false)]).\" -t halt";
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('expanded_string_utils-1.0.0.tgz',[interactive(false)]).\" -t halt";
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tgz',[interactive(false)]).\" -t halt";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('julian',[interactive(false)]).\"";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('regex',[interactive(false)]).\"";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('expanded_string_utils-1.0.0.tgz',[interactive(false)]).\"";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tgz',[interactive(false)]).\"";
 
 
 print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
