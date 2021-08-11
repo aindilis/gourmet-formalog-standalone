@@ -14,12 +14,6 @@ if (! $ENV{USER} eq 'root') {
 
 die "gourmet-formalog already exists\n" if -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
 
-if (! -f '/var/lib/myfrdcsa/codebases/minor') {
-  print "CREATING /var/lib/myfrdcsa/codebases/minor\n";
-  system 'sudo mkdir -p /var/lib/myfrdcsa/codebases/minor';
-  system 'sudo chown andrewdo.andrewdo /var/lib/myfrdcsa/codebases/minor';
-}
-
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
   print "CLONING Gourmet-Formalog\n"; 
   system 'cd /var/lib/myfrdcsa/codebases/minor/ && git clone https://github.com/aindilis/gourmet-formalog-standalone';
@@ -29,6 +23,40 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
 print "MAKING DIRECTORIES\n";
 system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process';
 system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes';
+
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('julian',[interactive(false)]).\" -t halt";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('regex',[interactive(false)]).\" -t halt";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tar.gz',[interactive(false)]).\" -t halt";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('expanded_string_utils-1.0.0.tgz',[interactive(false)]).\" -t halt";
+
+print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
+foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/var/lib/myfrdcsa/codebases/minor`) {
+  if (-f $file) {
+    print "<$file>\n";
+    # create dirs and make links back to installer
+    my $destinationfile = $file;
+    if ($destinationfile =~ q|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/|) {
+      $destinationfile =~ s|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted||sg;
+      if (! -f $destinationfile) {
+	my $commands =
+	  [
+	   'mkdir -p '.shell_quote(dirname($destinationfile)),
+	   'cd '.shell_quote(dirname($destinationfile)).' && ln -s '.shell_quote($file).' .',
+	  ];
+	foreach my $command (@$commands) {
+	  print $command."\n";
+	  system $command;
+	}
+      } else {
+	die "Target file already exists: <$destinationfile>\n";
+      }
+    } else {
+      die "Gourmet-formalog is not in the correct dir\n";
+    }
+  }
+}
+
+exit(0);
 
 print "DOWNLOADING\n";
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/FoodData_Central_csv_2019-12-17.zip') {
@@ -72,33 +100,4 @@ if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/pro
 
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer') {
   die "Gourmet-formalog is not in the correct dir, should be placed into /var/lib/myfrdcsa/codebases/minor/gourmet-formalog\n";
-}
-
-# install WordNet-Prolog, and extract to the prolog dir, then link back from that dir to the parent wordnet.pl file
-
-print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
-foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/var/lib/myfrdcsa/codebases/minor`) {
-  if (-f $file) {
-    print "<$file>\n";
-    # create dirs and make links back to installer
-    my $destinationfile = $file;
-    if ($destinationfile =~ q|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/|) {
-      $destinationfile =~ s|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted||sg;
-      if (! -f $destinationfile) {
-	my $commands =
-	  [
-	   'mkdir -p '.shell_quote(dirname($destinationfile)),
-	   'cd '.shell_quote(dirname($destinationfile)).' && ln -s '.shell_quote($file).' .',
-	  ];
-	foreach my $command (@$commands) {
-	  print $command."\n";
-	  system $command;
-	}
-      } else {
-	die "Target file already exists: <$destinationfile>\n";
-      }
-    } else {
-      die "Gourmet-formalog is not in the correct dir\n";
-    }
-  }
 }
