@@ -1,7 +1,12 @@
 #!/usr/bin/env perl
 
-use File::Basename;
 use String::ShellQuote qw(shell_quote);
+
+sub dirname {
+  my ($path) = @_;
+  $path =~ s|\/[^\/]+$||sg;
+  return $path;
+}
 
 if (! $ENV{USER} eq 'root') {
   die "Run as a regular user\n";
@@ -12,19 +17,13 @@ die "gourmet-formalog already exists\n" if -d '/var/lib/myfrdcsa/codebases/minor
 if (! -f '/var/lib/myfrdcsa/codebases/minor') {
   print "CREATING /var/lib/myfrdcsa/codebases/minor\n";
   system 'sudo mkdir -p /var/lib/myfrdcsa/codebases/minor';
-  system 'sudo chown '.$ENV{USER}.'.'.$ENV{USER}.' /var/lib/myfrdcsa/codebases/minor';
+  system 'sudo chown andrewdo.andrewdo /var/lib/myfrdcsa/codebases/minor';
 }
 
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
   print "CLONING Gourmet-Formalog\n"; 
-  system 'cd /var/lib/myfrdcsa/codebases/minor/ && git clone git@github.com:aindilis/gourmet-formalog-standalone';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/ && git clone https://github.com/aindilis/gourmet-formalog-standalone';
   system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog-standalone /var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
-}
-
-my $cwd = `pwd`;
-chomp $cwd;
-if ($cwd ne '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/') {
-  die "please run from /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/\n";
 }
 
 print "MAKING DIRECTORIES\n";
