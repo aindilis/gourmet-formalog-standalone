@@ -26,8 +26,9 @@ system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/reci
 
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('julian',[interactive(false)]).\" -t halt";
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('regex',[interactive(false)]).\" -t halt";
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tar.gz',[interactive(false)]).\" -t halt";
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('expanded_string_utils-1.0.0.tgz',[interactive(false)]).\" -t halt";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tgz',[interactive(false)]).\" -t halt";
+
 
 print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
 foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/var/lib/myfrdcsa/codebases/minor`) {

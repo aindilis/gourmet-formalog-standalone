@@ -16,8 +16,8 @@ COPY scripts/setup.pl /home/andrewdo/
 COPY scripts/run.sh /home/andrewdo/
 
 RUN mkdir -p /var/lib/myfrdcsa/codebases/minor
-RUN chown andrewdo.andrewdo /var/lib/myfrdcsa/codebases/minor
-RUN chown andrewdo.andrewdo /home/andrewdo
+RUN chown -R andrewdo.andrewdo /var/lib/myfrdcsa/codebases/minor
+RUN chown -R andrewdo.andrewdo /home/andrewdo
 RUN apt-get update
 RUN chmod +x /home/andrewdo/setup.pl
 RUN chown andrewdo.andrewdo /home/andrewdo/setup.pl

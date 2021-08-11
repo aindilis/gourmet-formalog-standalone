@@ -1,3 +1,6 @@
+(docker run -it f16495a12658)
+(docker container exec -it 175af727dbc8 bash)
+
 (--env "USER=$USER" --env "GROUP=$USER" --env "USER_ID=1000" --env "GROUP_ID=1000")
 
 (https://recipe-data.com/en/)
