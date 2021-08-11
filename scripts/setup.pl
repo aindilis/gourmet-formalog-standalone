@@ -15,7 +15,7 @@ if (! $ENV{USER} eq 'root') {
 die "gourmet-formalog already exists\n" if -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
 
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
-  print "CLONING Gourmet-Formalog\n"; 
+  print "CLONING Gourmet-Formalog\n";
   system 'cd /var/lib/myfrdcsa/codebases/minor/ && git clone https://github.com/aindilis/gourmet-formalog-standalone';
   system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog-standalone /var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
 }
