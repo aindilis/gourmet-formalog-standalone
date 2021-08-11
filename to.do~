@@ -1,5 +1,3 @@
-(--env "USER=$USER" --env "GROUP=$USER" --env "USER_ID=1000" --env "GROUP_ID=1000")
-
 (https://recipe-data.com/en/)
 
 (https://allenai.org/data/propara)
