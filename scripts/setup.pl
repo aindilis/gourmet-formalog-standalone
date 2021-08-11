@@ -57,19 +57,7 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
   }
 }
 
-exit(0);
-
-print "DOWNLOADING\n";
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/FoodData_Central_csv_2019-12-17.zip') {
-  print "DOWNLOADING FOODDATA CENTRAL CSV 2019-12-17\n";
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2019-12-17.zip';
-}
-
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.pl') {
-  print "DOWNLOADING MEALMASTER RECIPE ARCHIVE\n";
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl';
-}
-
+# WORDNET
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/') {
   print "CLONING WNPROLOG-3.1\n";
   # actually get it from here if possible instead: https://github.com/ekaf/wordnet-prolog
@@ -79,9 +67,20 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/') 
   system 'cp /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/to-wordnet/* /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
 }
 
+# RECIPES
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.pl') {
+  print "DOWNLOADING MEALMASTER RECIPE ARCHIVE\n";
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl';
+}
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.qlf') {
   print "QCOMPILING mm.pl\n";
   system 'swipl -s /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/qcompile-mm.pl -g halt';
+}
+
+# FDC
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/FoodData_Central_csv_2019-12-17.zip') {
+  print "DOWNLOADING FOODDATA CENTRAL CSV 2019-12-17\n";
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2019-12-17.zip';
 }
 if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB") {
   print "EXTRACTING FDC\n";
@@ -93,12 +92,4 @@ if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-
   system "swipl -s /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/generate_fooddata.pl -g halt";
 } else {
   die "no USDA-Food-DB directory\n";
-}
-if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/prolog") {
-  print "EXTRACTING Prolog WordNet\n";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/ && tar -xzf WNprolog-3.1.tar.gz";
-}
-
-if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer') {
-  die "Gourmet-formalog is not in the correct dir, should be placed into /var/lib/myfrdcsa/codebases/minor/gourmet-formalog\n";
 }
