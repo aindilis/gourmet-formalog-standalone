@@ -1,7 +1,19 @@
-(docker run -it f16495a12658)
-(docker container exec -it 175af727dbc8 bash)
+;; this might help to guide some of it, but it's not ready yet.  Have
+;; to fix Prolog-WordNet loading.
 
-(--env "USER=$USER" --env "GROUP=$USER" --env "USER_ID=1000" --env "GROUP_ID=1000")
+(docker run -it <IMAGE>)
+(docker ps)
+(docker container exec -it <CONTAINER> bash)
+(su andrewdo -c bash)
+(cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog && swipl -s gourmet.pl -t prolog)
+(ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/gourmet_logic.pl').)
+(ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/gourmet_specialty_diets.pl').)
+(ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/gourmet_fodmap.pl').)
+(search_food_data_central('611269716467',Res).)
+(findall(X,schema(X),Ys), write_list(Ys).)
+
+
+;; (--env "USER=$USER" --env "GROUP=$USER" --env "USER_ID=1000" --env "GROUP_ID=1000")
 
 (https://recipe-data.com/en/)
 
