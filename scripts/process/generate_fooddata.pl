@@ -40,7 +40,7 @@ loadFile(Filename) :-
 	     with_output_to(atom(Output),(output(schema(Schema)),foreach(member(Fact,Entries),output(Fact)))),
 	     write_data_to_file(Output,OutputFile)
 	    ) ; true),
-	qcompile(OutputFile),
+	(   exists_file(OutputFile) -> qcompile(OutputFile) ; true),
 	fail.
 loadFile(_Filename).
 
