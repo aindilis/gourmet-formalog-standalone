@@ -63,8 +63,8 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/') 
   # actually get it from here if possible instead: https://github.com/ekaf/wordnet-prolog
   system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts && git clone https://github.com/ekaf/wordnet-prolog';
   system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet-prolog /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet && ln -s wordnet/wnprolog.pl .';
   system 'cp /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/to-wordnet/* /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/prolog && ln -s ../wnprolog.pl .';
 }
 
 # RECIPES
