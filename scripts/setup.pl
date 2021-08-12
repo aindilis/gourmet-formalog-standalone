@@ -85,6 +85,11 @@ if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USD
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && unzip ../FoodData_Central_csv_2019-12-17.zip";
 }
 if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB") {
+  # remove the CSV of, download the pl for, and overwrite the problematic files
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/branded_food.pl";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food.pl";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food_nutrient.pl";
+
   print "QCOMPILING FDC\n";
   system "swipl -s /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/generate_fooddata.pl -g halt";
 } else {
