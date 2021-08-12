@@ -2,6 +2,9 @@
 
 apt-get install -y git unzip wget libstring-shellquote-perl swi-prolog-nox build-essential
 
+mkdir /home/andrewdo/lib/swipl/pack
+chown -R andrewdo.andrewdo /home/andrewdo/lib/
+
 su andrewdo -c /home/andrewdo/setup.pl
 
 # if ! command -v git &> /dev/null

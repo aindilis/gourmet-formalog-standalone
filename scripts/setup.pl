@@ -20,12 +20,9 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
   system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog-standalone /var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
 }
 
-print "MAKING DIRECTORIES\n";
-system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process';
-system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes';
-
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('julian',[interactive(false)]).\"";
-system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('regex',[interactive(false)]).\"";
+print "INSTALLING SWIPL MODULES\n";
+system "swipl -g \"pack_install('julian',[interactive(false)]).\"";
+system "swipl -g \"pack_install('regex',[interactive(false)]).\"";
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('expanded_string_utils-1.0.0.tgz',[interactive(false)]).\"";
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tgz',[interactive(false)]).\"";
 
