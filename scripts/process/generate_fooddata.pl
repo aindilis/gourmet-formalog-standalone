@@ -31,13 +31,15 @@ loadFile(Filename) :-
 	print_term([absoluteFilename,AbsoluteFilename],[quoted(true)]),nl,
 	concat_atom([Predicate,'.csv'],Filename),
 	print_term([filename,Filename,predicate,Predicate],[quoted(true)]),nl,
-	read_in_and_assert_to_name(AbsoluteFilename,Predicate),
-	arities(Predicate,Arities),
-	view([predicate,Predicate,arities,Arities]),
-	foreach(member(Arity,Arities),getAllEntries(Predicate,Arity,[Schema|Entries])),
 	atomic_list_concat([FooddataDir,Predicate,'.pl'],'',OutputFile),
-	with_output_to(atom(Output),(output(schema(Schema)),foreach(member(Fact,Entries),output(Fact)))),
-	write_data_to_file(Output,OutputFile),
+	(   read_in_and_assert_to_name(AbsoluteFilename,Predicate) ->
+	    (
+	     arities(Predicate,Arities),
+	     view([predicate,Predicate,arities,Arities]),
+	     foreach(member(Arity,Arities),getAllEntries(Predicate,Arity,[Schema|Entries])),
+	     with_output_to(atom(Output),(output(schema(Schema)),foreach(member(Fact,Entries),output(Fact)))),
+	     write_data_to_file(Output,OutputFile)
+	    ) ; true),
 	qcompile(OutputFile),
 	fail.
 loadFile(_Filename).

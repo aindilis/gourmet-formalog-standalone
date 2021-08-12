@@ -67,7 +67,7 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/') 
 # RECIPES
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.pl') {
   print "DOWNLOADING MEALMASTER RECIPE ARCHIVE\n";
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl.gz && gunzip mm.pl.gz';
 }
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.qlf') {
   print "QCOMPILING mm.pl\n";
@@ -86,9 +86,9 @@ if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USD
 }
 if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB") {
   # remove the CSV of, download the pl for, and overwrite the problematic files
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/branded_food.pl";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food.pl";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food_nutrient.pl";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/branded_food.pl.gz && gunzip branded_food.pl.gz";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food.pl.gz && gunzip food.pl.gz";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food_nutrient.pl.gz && gunzip food_nutrient.pl.gz";
 
   print "QCOMPILING FDC\n";
   system "swipl -s /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/generate_fooddata.pl -g halt";
