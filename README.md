@@ -19,7 +19,7 @@ some others, in which case: try this:
 ```
 docker container ps -a
 docker container exec -it <CONTAINER> bash
-cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g "qcompile('food_nutrient.pl')."
+cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB/ && swipl -g "qcompile('food_nutrient.pl')."
 ./run.sh
 ```
 
