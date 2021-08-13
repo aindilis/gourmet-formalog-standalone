@@ -1,6 +1,6 @@
 :- set_prolog_stack(global, limit(40 000 000 000)).
-:- set_prolog_stack(trail,  limit(8 000 000 000)).
-:- set_prolog_stack(local,  limit(8 000 000 000)).
+:- set_prolog_stack(trail,  limit(16 000 000 000)).
+:- set_prolog_stack(local,  limit(16 000 000 000)).
 
 %% FIXME, make it so it only runs it once
 
