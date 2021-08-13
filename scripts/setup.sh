@@ -2,7 +2,7 @@
 
 apt-get install -y git unzip wget libstring-shellquote-perl swi-prolog-nox build-essential emacs-nox screen
 
-mkdir /home/andrewdo/lib/swipl/pack
+mkdir -p /home/andrewdo/lib/swipl/pack
 chown -R andrewdo.andrewdo /home/andrewdo/lib/
 
 su andrewdo -c /home/andrewdo/setup.pl
