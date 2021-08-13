@@ -20,7 +20,7 @@ some others, in which case: try this:
 docker container ps -a
 docker container exec -it <CONTAINER> bash
 cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB/ && swipl -g "qcompile('food_nutrient.pl')."
-./run.sh
+cd /home/andrewdo && ./run.sh
 ```
 
 If all is working, try input like this:
