@@ -1,4 +1,8 @@
-Note it will take a long time to generate the qlfs for FDC data.
+Please install using docker.  Note that this Docker build is having
+some issues, but is otherwise somewhat ready to use.
+
+Note it will take a long time to generate the qlfs for FDC
+data. 
 
 ```
 git clone https://github.com/aindilis/gourmet-formalog-standalone
@@ -9,10 +13,23 @@ docker run -it <IMAGE> bash
 ./run.sh
 ```
 
-Then try input like this:
+Please note that it might fail to build food_nutrient.qlf and possibly
+some others, in which case: try this:
 
 ```
-findall(X,schema(X),Ys), write_list(Ys).
-search_food_data_central('611269716467',Res).
+docker container ps -a
+docker container exec -it <CONTAINER> bash
+cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g "qcompile('food_nutrient.pl')."
+./run.sh
+```
+
+If all is working, try input like this:
+
+```
+findall(X,schema(X),Xs),write_list(Xs).
+```
+
+```
+search_food_data_central('611269716467',Res),write_list(Res).
 
 ```

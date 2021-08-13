@@ -1,3 +1,13 @@
+(#!/bin/sh
+
+docker build --rm  .
+# docker run -e "USER=andrewdo" -e "GROUP=andrewdo" -e "USER_ID=1000" -e "GROUP_ID=1000" .
+
+# docker run --rm -v "$(pwd):/$pwd | slugify)" -w "/$(pwd | slugify)" -ti --entrypoint=aindilis-gourmet-formalog-standalone
+
+# docker run --rm -ti --entrypoint= aindilis-gourmet-formalog-standalone-2146d58a:1.0 bash)
+
+
 ;; this might help to guide some of it, but it's not ready yet.  Have
 ;; to fix Prolog-WordNet loading.
 
@@ -76,3 +86,5 @@
       the latter is preferred. 
 2020-01-07 19:32:13 <aindilis> And if no facilitator exists, would there be
       interest in me developing one.)
+
+
