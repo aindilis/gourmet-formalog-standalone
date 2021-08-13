@@ -27,9 +27,11 @@ If all is working, try input like this:
 
 ```
 findall(X,schema(X),Xs),write_list(Xs).
-```
 
-```
 search_food_data_central('611269716467',Res),write_list(Res).
+
+findall(1,rec(_,_,_),Recs),length(Recs,Len),write_list([Len]).
+
+testParseFooddata.
 
 ```
