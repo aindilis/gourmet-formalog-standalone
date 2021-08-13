@@ -37,3 +37,10 @@ testParseFooddata.
 ```
 
 "Puts the filling in fulfilling"
+
+Going to add pengines support on port 9883 soon.  You can talk to
+pengines using a number of clients such as
+https://pengines.swi-prolog.org/docs/documentation.html or 
+https://pypi.org/project/pengines/ or
+https://github.com/simularity/JavaPengine or
+https://github.com/aindilis/formalog-pengines etc.
