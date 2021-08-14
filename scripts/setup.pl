@@ -23,9 +23,14 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
 print "INSTALLING SWIPL MODULES\n";
 system "swipl -g \"pack_install('julian',[interactive(false)]).\"";
 system "swipl -g \"pack_install('regex',[interactive(false)]).\"";
+system "swipl -g \"pack_install('genutils',[interactive(false)]).\"";
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('expanded_string_utils-1.0.0.tgz',[interactive(false)]).\"";
 system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && swipl -g \"pack_install('tsv_read_and_assert-1.0.0.tgz',[interactive(false)]).\"";
 
+if (! -d '/var/lib/myfrdcsa/codebases/minor/formalog-pengines') {
+  print "INSTALLING Formalog-Pengines\n";
+  system 'cd /var/lib/myfrdcsa/codebases/minor && wget https://frdcsa.org/~andrewdo/formalog-pengines-20210814.tgz && tar xzf ./formalog-pengines-20210814.tgz';
+}
 
 print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
 foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/var/lib/myfrdcsa/codebases/minor`) {
@@ -95,3 +100,5 @@ if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-
 } else {
   die "no USDA-Food-DB directory\n";
 }
+
+

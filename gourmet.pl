@@ -13,6 +13,7 @@
 gourmetFormalogFlag(not(debug)).
 %% gourmetFormalogFlag(integrated).
 gourmetFormalogFlag(independent).
+gourmetFormalogFlag(pengines).
 
 viewIf(Item) :-
  	(   gourmetFormalogFlag(debug) -> 
@@ -22,11 +23,12 @@ viewIf(Item) :-
 testGourmetFormalog :-
 	true.
 	
-:- (gourmetFormalogFlag(integrated) -> 
-    ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/gourmet_formalog.pl') ;
-    (	%% trace,
+:-
+	(   gourmetFormalogFlag(pengines) -> 
+	    ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/gourmet_formalog.pl') ;
+	    true),
 	ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/gourmet.pl'),
-	ensure_loaded('/var/lib/myfrdcsa/codebases/minor/cyc-common/frdcsa/sys/flp/autoload/cyc_api.pl'))).
+	ensure_loaded('/var/lib/myfrdcsa/codebases/minor/cyc-common/frdcsa/sys/flp/autoload/cyc_api.pl').
 
 :- loadGourmet.
 
