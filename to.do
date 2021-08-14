@@ -12,6 +12,9 @@ docker build --rm  .
 
 # docker run --rm -ti --entrypoint= aindilis-gourmet-formalog-standalone-2146d58a:1.0 bash)
 
+docker image build -f "$fn" --no-cache --network=host -t "$(dirslug | sed 's/^-*//' | tr -d '\n';)-$(pwd | hash-crc32 | tr -d '\n'):1.0" .
+docker image build -f "$fn" --no-cache --network=host .
+docker image build -f "$fn" --no-cache --network=host -t "$your-name:1.0" .
 
 ;; this might help to guide some of it, but it's not ready yet.  Have
 ;; to fix Prolog-WordNet loading.

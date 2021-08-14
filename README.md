@@ -1,4 +1,4 @@
-Please install using docker.  Note that this Docker build is having
+Please install using Docker.  Note that this Docker build is having
 some issues, but is otherwise somewhat ready to use.
 
 Note it will take a long time to generate the qlfs for FDC
@@ -44,3 +44,24 @@ https://pengines.swi-prolog.org/docs/documentation.html or
 https://pypi.org/project/pengines/ or
 https://github.com/simularity/JavaPengine or
 https://github.com/aindilis/formalog-pengines etc.
+
+
+Note pengines will open the 9883 port on the Docker container, to query you must do something like this:
+
+```
+cd /var/lib/myfrdcsa/codebases/minor/formalog-pengines/formalog_pengines/ && swipl -s formalog_pengines_client.pl
+```
+
+then:
+
+```
+consult('/var/lib/myfrdcsa/codebases/minor/formalog-pengines/attempts/pengines/1/ports.pl').
+```
+
+Then you must enter a query, eg:
+
+```
+query_formalog_pengines_agent(gourmet,'172.17.0.2',search_food_data_central('611269716467',Res),Result),,print_term(Result,[]).
+```
+
+
