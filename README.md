@@ -61,7 +61,7 @@ consult('/var/lib/myfrdcsa/codebases/minor/formalog-pengines/attempts/pengines/1
 Then you must enter a query, eg:
 
 ```
-query_formalog_pengines_agent(gourmet,'172.17.0.2',search_food_data_central('611269716467',Res),Result),,print_term(Result,[]).
+query_formalog_pengines_agent(gourmet,'172.17.0.2',search_food_data_central('611269716467',Res),Result),print_term(Result,[]).
 ```
 
 
