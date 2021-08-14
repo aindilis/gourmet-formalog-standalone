@@ -1,3 +1,6 @@
+(try to integrate this:
+ https://www.efsa.europa.eu/en/data-report/chemical-hazards-database-openfoodtox)
+
 (https://data.europa.eu/data/datasets)
 
 (#!/bin/sh

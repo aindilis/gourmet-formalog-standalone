@@ -4,7 +4,7 @@
 :- use_module(library(http/json)).
 
 load_fodmap :-
-	Dir = '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/special-diets/fodmap/sys/basket-20210508',
+	Dir = '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/special-diets/low-fodmap/sys/basket-20210508',
 	directory_files(Dir,Files),
 	member(File,Files),
 	atom_concat(_Root,'.json',File),
