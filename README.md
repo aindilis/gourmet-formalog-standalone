@@ -17,6 +17,9 @@ gourmet-logic.pl file:
 
 https://github.com/aindilis/gourmet-formalog-standalone/blob/main/scripts/gourmet/gourmet_logic.pl
 
+Is able to be queried from various Pengines libraries from a variety
+of languages.
+
 ---
 
 Please install using Docker.  Note that this Docker build is having
@@ -59,8 +62,8 @@ testParseFooddata.
 
 "Puts the filling in fulfilling"
 
-Added support for pengines on port 9883 soon.  You can talk to
-pengines using a number of clients such as
+Added support for pengines on port 9883.  You can talk to pengines
+using a number of clients such as
 https://pengines.swi-prolog.org/docs/documentation.html or
 https://pypi.org/project/pengines/ or
 https://github.com/simularity/JavaPengine or
