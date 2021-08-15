@@ -88,4 +88,8 @@ Then you must enter a query, eg:
 query_formalog_pengines_agent(gourmet,'172.17.0.2',search_food_data_central('611269716467',Res),Result),print_term(Result,[]).
 ```
 
+---
 
+For more information see:
+
+https://frdcsa.org/~andrewdo/WebWiki/MealPlanningResources.html
