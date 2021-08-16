@@ -5,7 +5,7 @@ use IO::File;
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx') {
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data && wget https://zenodo.org/record/3693783/files/OpenFoodToxTX22525_2020.xlsx?download=1";
-  system "mv '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx?download=1' 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx'";
+  system "mv '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx?download=1' '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx'";
 }
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.csv') {
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data && xlsx2csv -a 'OpenFoodToxTX22525_2020.xlsx' > OpenFoodToxTX22525_2020.csv";
