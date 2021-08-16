@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt-get install -y git unzip wget libstring-shellquote-perl swi-prolog-nox build-essential emacs-nox screen xlsx2csv
+apt-get install -y git unzip wget libstring-shellquote-perl swi-prolog-nox build-essential emacs-nox screen xlsx2csv libfile-slurp-perl
 
 mkdir -p /home/andrewdo/lib/swipl/pack
 chown -R andrewdo.andrewdo /home/andrewdo/lib/

@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
-use PerlLib::SwissArmyKnife;
+use File::Slurp qw(read_file);
+use IO::File;
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && wget https://www.ars.usda.gov/ARSUserFiles/80400530/apps/2017-2018%20FNDDS%20At%20A%20Glance%20-%20Foods%20and%20Beverages.xlsx";
