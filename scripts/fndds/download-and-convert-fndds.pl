@@ -12,11 +12,11 @@ if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/
 }
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/2017-2018 FNDDS At A Glance - FNDDS Ingredients.csv') {
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018%20FNDDS%20At%20A%20Glance%20-%20Foods%20and%20Beverages.xlsx' > 2017-2018%20FNDDS%20At%20A%20Glance%20-%20Foods%20and%20Beverages.csv";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018%20FNDDS%20At%20A%20Glance%20-%20Portions%20and%20Weights.xlsx' > 2017-2018%20FNDDS%20At%20A%20Glance%20-%20Portions%20and%20Weights.csv";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018%20FNDDS%20At%20A%20Glance%20-%20FNDDS%20Ingredients.xlsx' > '2017-2018%20FNDDS%20At%20A%20Glance%20-%20FNDDS%20Ingredients.csv'";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018%20FNDDS%20At%20A%20Glance%20-%20Ingredient%20Nutrient%20Values.xlsx' > '2017-2018%20FNDDS%20At%20A%20Glance%20-%20Ingredient%20Nutrient%20Values.csv'";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018%20FNDDS%20At%20A%20Glance%20-%20FNDDS%20Nutrient%20Values.xlsx' > '2017-2018%20FNDDS%20At%20A%20Glance%20-%20FNDDS%20Nutrient%20Values.csv'";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx' > '2017-2018 FNDDS At A Glance - FNDDS Ingredients.csv'";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018 FNDDS At A Glance - FNDDS Nutrient Values.xlsx' > '2017-2018 FNDDS At A Glance - FNDDS Nutrient Values.csv'";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018 FNDDS At A Glance - Foods and Beverages.xlsx' > '2017-2018 FNDDS At A Glance - Foods and Beverages.csv'";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018 FNDDS At A Glance - Ingredient Nutrient Values.xlsx' > '2017-2018 FNDDS At A Glance - Ingredient Nutrient Values.csv'";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018 FNDDS At A Glance - Portions and Weights.xlsx' > '2017-2018 FNDDS At A Glance - Portions and Weights.csv'";
 }
 
 # my $spreadsheets = [];
