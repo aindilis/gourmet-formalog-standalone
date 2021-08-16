@@ -101,4 +101,17 @@ if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-
   die "no USDA-Food-DB directory\n";
 }
 
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
+  print "DOWNLOADING FNDDS\n";
+  system "cd '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/' && ./download-and-convert-fndds.pl";
+}
 
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
+  print "DOWNLOADING AND CONVERTING FNDDS\n";
+  system "cd '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/' && ./download-and-convert-fndds.pl";
+}
+
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx') {
+  print "DOWNLOADING AND CONVERTING FOOD TOXICITY DATABASE\n";
+  system "cd /var/lib/myfrdcsa/collaborative/git/gourmet-formalog-standalone/scripts/toxicity/ && ./setup-food-toxicity-qlfs.pl";
+}

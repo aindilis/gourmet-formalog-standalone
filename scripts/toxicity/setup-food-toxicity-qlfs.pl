@@ -1,27 +1,28 @@
 #!/usr/bin/env perl
 
-use PerlLib::SwissArmyKnife;
+use File::Slurp qw(read_file);
+use IO::File;
 
-if (! -f 'OpenFoodToxTX22525_2020.xlsx') {
-  system "wget https://zenodo.org/record/3693783/files/OpenFoodToxTX22525_2020.xlsx?download=1";
-  system "mv 'OpenFoodToxTX22525_2020.xlsx?download=1' 'OpenFoodToxTX22525_2020.xlsx'";
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx') {
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data && wget https://zenodo.org/record/3693783/files/OpenFoodToxTX22525_2020.xlsx?download=1";
+  system "mv 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx?download=1' 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx'";
 }
-if (! -f 'OpenFoodToxTX22525_2020.csv') {
-  system "xlsx2csv -a 'OpenFoodToxTX22525_2020.xlsx' > OpenFoodToxTX22525_2020.csv";
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.csv') {
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data && xlsx2csv -a 'OpenFoodToxTX22525_2020.xlsx' > OpenFoodToxTX22525_2020.csv";
 }
 
 my $spreadsheets = [];
 my $nextfile;
 my @rows = ();
 
-my $c = read_file('OpenFoodToxTX22525_2020.csv');
+my $c = read_file('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.csv');
 
 foreach my $line (split /\n/, $c) {
   if ($line =~ /^-------- (\d+) - (.*?)$/) {
     my $tmp = $2;
     if (scalar @rows) {
       my $fh = IO::File->new();
-      $fh->open(">data/$nextfile.csv") or die "cannot open\n";
+      $fh->open(">/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/$nextfile.csv") or die "cannot open\n";
       print $fh join("\n",@rows);
       $fh->close();
       @rows = ();
@@ -34,7 +35,7 @@ foreach my $line (split /\n/, $c) {
 
 if (scalar @rows) {
   my $fh = IO::File->new();
-  $fh->open(">data/$nextfile.csv") or die "cannot open\n";
+  $fh->open(">/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/$nextfile.csv") or die "cannot open\n";
   print $fh join("\n",@rows);
   $fh->close();
   @rows = ();
