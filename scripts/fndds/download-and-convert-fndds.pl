@@ -2,6 +2,9 @@
 
 use File::Slurp qw(read_file);
 use IO::File;
+use File::Basename;
+
+system "mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data";
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && wget https://www.ars.usda.gov/ARSUserFiles/80400530/apps/2017-2018%20FNDDS%20At%20A%20Glance%20-%20Foods%20and%20Beverages.xlsx";
@@ -19,32 +22,41 @@ if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data && xlsx2csv -a '2017-2018 FNDDS At A Glance - Portions and Weights.xlsx' > '2017-2018 FNDDS At A Glance - Portions and Weights.csv'";
 }
 
-# my $spreadsheets = [];
-# my $nextfile;
-# my @rows = ();
+foreach my $file (split /\n/, `ls -1 /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/*.csv`) {
+  print "<$file>\n";
+  my $spreadsheets = [];
+  my $nextfile;
+  my @rows = ();
 
-# my $c = read_file('OpenFoodToxTX22525_2020.csv');
+  my $c = read_file($file);
+  my $basename = basename($file);
 
-# foreach my $line (split /\n/, $c) {
-#   if ($line =~ /^-------- (\d+) - (.*?)$/) {
-#     my $tmp = $2;
-#     if (scalar @rows) {
-#       my $fh = IO::File->new();
-#       $fh->open(">data/$nextfile.csv") or die "cannot open\n";
-#       print $fh join("\n",@rows);
-#       $fh->close();
-#       @rows = ();
-#     }
-#     $nextfile = $tmp;
-#   } else {
-#     push @rows, $line;
-#   }
-# }
+  foreach my $line (split /\n/, $c) {
+    if ($line =~ /^-------- (\d+) - (.*?)$/) {
+      my $tmp = $2;
+      shift @rows;
+      shift @rows;
+      if (scalar @rows) {
+	my $fh = IO::File->new();
+	$fh->open(">/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/$basename-$nextfile.csv") or die "cannot open\n";
+	print $fh join("\n",@rows);
+	$fh->close();
+	@rows = ();
+      }
+      $nextfile = $tmp;
+    } else {
+      push @rows, $line;
+    }
+  }
 
-# if (scalar @rows) {
-#   my $fh = IO::File->new();
-#   $fh->open(">data/$nextfile.csv") or die "cannot open\n";
-#   print $fh join("\n",@rows);
-#   $fh->close();
-#   @rows = ();
-# }
+  shift @rows;
+  shift @rows;
+  if (scalar @rows) {
+    my $fh = IO::File->new();
+    $fh->open(">/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/$basename-$nextfile.csv") or die "cannot open\n";
+    print $fh join("\n",@rows);
+    $fh->close();
+    @rows = ();
+  }
+}
+
