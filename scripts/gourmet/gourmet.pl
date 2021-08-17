@@ -33,8 +33,8 @@ loadGourmet :-
 
 	(   gourmetFormalogFlag(test) -> true ;
 	    (	
-		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/prolog/wnprolog.pl'),
-		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/gourmet_wordnet.pl'),
+		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet/prolog/wnprolog.pl'),
+		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet/gourmet_wordnet.pl'),
 		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/receipts/inventory_import_data.pl'),
 		wnCacheAllSpecs(food)
 	    )),
