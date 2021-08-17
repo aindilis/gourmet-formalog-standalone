@@ -60,4 +60,4 @@ foreach my $file (split /\n/, `ls -1 /var/lib/myfrdcsa/codebases/minor/gourmet-f
   }
 }
 
-system "cd /var/lib/myfrdcsa/collaborative/git/gourmet-formalog-standalone/scripts/fndds/ && swipl -s ./generate_fndds.pl";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/ && swipl -s ./generate_fndds.pl";

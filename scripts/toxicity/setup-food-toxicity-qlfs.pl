@@ -41,4 +41,4 @@ if (scalar @rows) {
   @rows = ();
 }
 
-system "cd /var/lib/myfrdcsa/collaborative/git/gourmet-formalog-standalone/scripts/toxicity/ && swipl -s ./generate_toxicity.pl";
+system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/ && swipl -s ./generate_toxicity.pl";
