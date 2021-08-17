@@ -59,6 +59,10 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
   }
 }
 
+if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source') {
+  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source';
+}
+
 # WORDNET
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet/') {
   print "CLONING WNPROLOG-3.1\n";
