@@ -36,7 +36,7 @@ loadFile(Filename) :-
 	    (	
 		arities(Predicate,Arities),
 		view([predicate,Predicate,arities,Arities]),
-		foreach (member(Arity,Arities),getAllEntries(Predicate,Arity,[Schema|Entries])),
+		foreach(member(Arity,Arities),getAllEntries(Predicate,Arity,[Schema|Entries])),
 		with_output_to(atom(Output),(output(schema(Schema)),foreach(member(Fact,Entries),output(Fact)))),
 		write_data_to_file(Output,OutputFile)
 	    ) ; true),
