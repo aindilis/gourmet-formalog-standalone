@@ -3,6 +3,10 @@
 use File::Slurp qw(read_file);
 use IO::File;
 
+if (! -d '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/toxicity/') {
+  system "mkdir -p '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/toxicity/'";
+}
+
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity/OpenFoodToxTX22525_2020.xlsx') {
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity && wget https://zenodo.org/record/3693783/files/OpenFoodToxTX22525_2020.xlsx?download=1";
   system "mv '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity/OpenFoodToxTX22525_2020.xlsx?download=1' '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity/OpenFoodToxTX22525_2020.xlsx'";

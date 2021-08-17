@@ -4,7 +4,7 @@ use File::Slurp qw(read_file);
 use IO::File;
 use File::Basename;
 
-system "mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/fndds";
+system "mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/fndds";
 
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/fndds/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/fndds && wget https://www.ars.usda.gov/ARSUserFiles/80400530/apps/2017-2018%20FNDDS%20At%20A%20Glance%20-%20Foods%20and%20Beverages.xlsx";

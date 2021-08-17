@@ -108,11 +108,17 @@ if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data
   die "no USDA-Food-DB directory\n";
 }
 
+if (! -d '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/fndds/') {
+  system "mkdir -p '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/fndds/'";
+}
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/fndds/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
   print "DOWNLOADING AND CONVERTING FNDDS\n";
   system "cd '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/' && ./download-and-convert-fndds.pl";
 }
 
+if (! -d '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/toxicity/') {
+  system "mkdir -p '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/toxicity/'";
+}
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity/OpenFoodToxTX22525_2020.xlsx') {
   print "DOWNLOADING AND CONVERTING FOOD TOXICITY DATABASE\n";
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/ && ./setup-food-toxicity-qlfs.pl";
