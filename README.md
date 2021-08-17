@@ -53,9 +53,21 @@ Please note that it might fail to build food_nutrient.qlf and possibly
 some others, in which case: try this:
 
 ```
-docker container ps -a
+docker ps -a
 docker container exec -it <CONTAINER> bash
-cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB/ && swipl -g "qcompile('food_nutrient.pl')."
+```
+
+Or if that doesn't work:
+
+```
+docker images
+docker run -it <IMAGE> bash
+```
+
+Then:
+
+```
+cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/ && swipl -g "qcompile('food_nutrient.pl')."
 cd /home/andrewdo && ./run.sh
 ```
 
