@@ -94,12 +94,11 @@ if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-da
   print "DOWNLOADING FOODDATA CENTRAL CSV 2019-12-17\n";
   system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/ && wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2019-12-17.zip';
 }
-if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central") {
-  print "EXTRACTING FDC\n";
-  system "mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/food-data-central";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && unzip FoodData_Central_csv_2019-12-17.zip";
-}
+
 if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central") {
+  print "EXTRACTING FDC\n";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && unzip FoodData_Central_csv_2019-12-17.zip";
+
   # remove the CSV of, download the pl for, and overwrite the problematic files
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && wget https://frdcsa.org/~andrewdo/gourmet/branded_food.pl.gz && gunzip branded_food.pl.gz";
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && wget https://frdcsa.org/~andrewdo/gourmet/food.pl.gz && gunzip food.pl.gz";
