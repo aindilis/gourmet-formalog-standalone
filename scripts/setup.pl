@@ -32,6 +32,7 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
 }
 
 print "INSTALLING SWIPL MODULES\n";
+# add halt instruction here
 system "swipl -g \"pack_install('julian',[interactive(false)]).\"";
 system "swipl -g \"pack_install('regex',[interactive(false)]).\"";
 system "swipl -g \"pack_install('genutils',[interactive(false)]).\"";
