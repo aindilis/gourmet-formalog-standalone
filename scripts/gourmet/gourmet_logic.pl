@@ -156,23 +156,21 @@ search_food_data_central(BarcodeAtom,[invFn,invFn(idFn(gourmetFDC,FDC_ID),barcod
 	    MappedNutritionInfo = []).
 
 
+%% setof(Unit_Name,Unit_Name^nutrient(_,_,Unit_Name,_,_),Results),write_list(Results).
+unit_name_mapping('G',grams).
+unit_name_mapping('IU',unknown).
+unit_name_mapping('KCAL',kilocalories).
+unit_name_mapping(kJ,unknown).
+unit_name_mapping('MG',milligrams).
+unit_name_mapping('MG_ATE',unknown).
+unit_name_mapping('SP_GR',unknown).
+unit_name_mapping('UG',unknown).
 
-%% get_nutrition_for_barcode_atom('041250025979',X).
-
-fdcNutritionToNutritionix('Total lipid (fat)',grams,total_fat,grams).
-%% fdcNutritionToNutritionix('Total fat (NLEA)',grams,total_fat,grams).
-fdcNutritionToNutritionix('Fatty acids, total saturated',grams,saturated_fat,grams).
-fdcNutritionToNutritionix('Cholesterol',milligrams,cholesterol,milligrams).
-fdcNutritionToNutritionix('Sodium',milligrams,sodium,milligrams).
-fdcNutritionToNutritionix('Carbohydrate, by difference',grams,total_carbohydrate,grams).
-%% fdcNutritionToNutritionix('Carbohydrate, by summation',grams,total_carbohydrate,grams).
-fdcNutritionToNutritionix('Fiber, total dietary',grams,dietary_fiber,grams).
-fdcNutritionToNutritionix('Energy',kilocalories,calories,calories).
-%% serving_weight_grams
+prolog_consult('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/fdc_nutrition_to_nutritionix.pl').
 
 conversionFactor(Item,Item,1.0).
 conversionFactor(kilocalories,calories,1000.0).
-
+conversionFactor(grams,milligrams,1000.0).
 
 map_nutrition_info_for_barcode_atom(BarcodeAtom,MappedNutritionInfo) :-
 	get_nutrition_for_barcode_atom(BarcodeAtom,[FDC_ID,DESC,FDCNutritionInfo]),
@@ -182,6 +180,7 @@ map_nutrition_info_for_barcode_atom(BarcodeAtom,MappedNutritionInfo) :-
 		 member(result(FDCNutrientID,FDCNutrientName,FDCAmount,_FDCNutrientUnitName),FDCNutritionInfo),
 		 view([FDCNutrientID,FDCNutrientName,FDCAmount,_FDCNutrientUnitName]),
 		 fdcNutritionToNutritionix(FDCNutrientName,FDCNutrientUnitName,NutritionixNutrientName,NutritionixUnitName),
+		 view(fdcNutritionToNutritionix(FDCNutrientName,FDCNutrientUnitName,NutritionixNutrientName,NutritionixUnitName)),
 		 conversionFactor(FDCNutrientUnitName,NutritionixUnitName,ConversionFactor),
 		 (   nonvar(ConversionFactor) ->
 		     (

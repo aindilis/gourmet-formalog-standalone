@@ -1,8 +1,13 @@
+(persist the results of mapping from FDC to Nutritionix)
+(finish the mapping from FDC to Nutritionix format)
+
 (I need to create persistence for inventory items)
-(I need to update gourmet-formalog-standalone)
-(I need to ensure that the data files are not commited to Git,
- either by git ignore, or by rearranging everything into the data/
- dir)
+(completed
+ (I need to update gourmet-formalog-standalone))
+(completed
+ (I need to ensure that the data files are not commited
+  to Git, either by git ignore, or by rearranging everything into
+  the data/ dir))
 
 (completed
 (try to integrate this:
