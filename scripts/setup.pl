@@ -59,8 +59,8 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
   }
 }
 
-if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source') {
-  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source';
+if (! -d '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source') {
+  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source';
 }
 
 # WORDNET
@@ -85,7 +85,7 @@ if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes
 
 # FDC
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central') {
-  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central';
+  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/food-data-central';
 }
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/FoodData_Central_csv_2019-12-17.zip') {
   print "DOWNLOADING FOODDATA CENTRAL CSV 2019-12-17\n";
@@ -93,7 +93,7 @@ if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-da
 }
 if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central") {
   print "EXTRACTING FDC\n";
-  system "mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central";
+  system "mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/food-data-central";
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && unzip FoodData_Central_csv_2019-12-17.zip";
 }
 if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central") {
