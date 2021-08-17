@@ -1,15 +1,3 @@
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
----
-
 god-mode on your food.
 
 This is the backend to a very powerful open source meal planner called
@@ -57,7 +45,7 @@ docker ps -a
 docker container exec -it <CONTAINER> bash
 ```
 
-Or if that doesn't work:
+Or if there are no running Gourmet-Formalog containers, then:
 
 ```
 docker images
@@ -68,6 +56,7 @@ Then:
 
 ```
 cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/ && swipl -g "qcompile('food_nutrient.pl')."
+chown andrewdo.andrewdo /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/food_nutrient.qlf
 cd /home/andrewdo && ./run.sh
 ```
 
