@@ -59,6 +59,9 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
   }
 }
 
+if (! -d '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog') {
+  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog';
+}
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source') {
   system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source';
 }
