@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+use Data::Dumper;
+use Getopt::Declare;
 use String::ShellQuote qw(shell_quote);
 
 sub dirname {
@@ -8,11 +10,20 @@ sub dirname {
   return $path;
 }
 
+my $specification = q(
+	-o		Force overwrite
+);
+
+my $conf = Getopt::Declare->new($specification);
+
+my $hostname = `hostname -f`;
+chomp $hostname;
+
 if (! $ENV{USER} eq 'root') {
   die "Run as a regular user\n";
 }
 
-die "gourmet-formalog already exists\n" if -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog';
+die "gourmet-formalog already exists\n" if (-d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog' and ! $conf->{'-o'});
 
 if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog') {
   print "CLONING Gourmet-Formalog\n";
@@ -32,29 +43,31 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/formalog-pengines') {
   system 'cd /var/lib/myfrdcsa/codebases/minor && wget https://frdcsa.org/~andrewdo/formalog-pengines-20210814.tgz && tar xzf ./formalog-pengines-20210814.tgz';
 }
 
-print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
-foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/var/lib/myfrdcsa/codebases/minor`) {
-  if (-f $file) {
-    print "<$file>\n";
-    # create dirs and make links back to installer
-    my $destinationfile = $file;
-    if ($destinationfile =~ q|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/|) {
-      $destinationfile =~ s|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted||sg;
-      if (! -f $destinationfile) {
-	my $commands =
-	  [
-	   'mkdir -p '.shell_quote(dirname($destinationfile)),
-	   'cd '.shell_quote(dirname($destinationfile)).' && ln -s '.shell_quote($file).' .',
-	  ];
-	foreach my $command (@$commands) {
-	  print $command."\n";
-	  system $command;
+if ($hostname ne 'ai2.frdcsa.org') {
+  print "COPYING PROLOG DEPENDENCIES TO CORRECT LOCATIONS\n";
+  foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/var/lib/myfrdcsa/codebases/minor`) {
+    if (-f $file) {
+      print "<$file>\n";
+      # create dirs and make links back to installer
+      my $destinationfile = $file;
+      if ($destinationfile =~ q|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted/|) {
+	$destinationfile =~ s|^/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/installer/redacted||sg;
+	if (! -f $destinationfile) {
+	  my $commands =
+	    [
+	     'mkdir -p '.shell_quote(dirname($destinationfile)),
+	     'cd '.shell_quote(dirname($destinationfile)).' && ln -s '.shell_quote($file).' .',
+	    ];
+	  foreach my $command (@$commands) {
+	    print $command."\n";
+	    system $command;
+	  }
+	} else {
+	  die "Target file already exists: <$destinationfile>\n";
 	}
       } else {
-	die "Target file already exists: <$destinationfile>\n";
+	die "Gourmet-formalog is not in the correct dir\n";
       }
-    } else {
-      die "Gourmet-formalog is not in the correct dir\n";
     }
   }
 }
