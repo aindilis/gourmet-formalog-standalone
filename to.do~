@@ -1,12 +1,5 @@
-(I need to create persistence)
-(I need to update gourmet-formalog-standalone)
-(I need to ensure that the data files are not commited to Git,
- either by git ignore, or by rearranging everything into the data/
- dir)
-
-(completed
 (try to integrate this:
- https://www.efsa.europa.eu/en/data-report/chemical-hazards-database-openfoodtox))
+ https://www.efsa.europa.eu/en/data-report/chemical-hazards-database-openfoodtox)
 
 (https://data.europa.eu/data/datasets)
 
