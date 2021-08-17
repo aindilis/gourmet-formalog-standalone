@@ -74,6 +74,9 @@ if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet
 }
 
 # RECIPES
+if (! -d '/var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/recipes') {
+  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor-data/gourmet-formalog/source/recipes';
+}
 if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes/mm.pl') {
   print "DOWNLOADING MEALMASTER RECIPE ARCHIVE\n";
   system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl.gz && gunzip mm.pl.gz';
