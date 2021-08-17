@@ -4,7 +4,7 @@
 
 :- consult('/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/util.pl').
 
-fooddata_dir('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB/').
+fooddata_dir('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/').
 
 load_fooddata :-
 	not(program_state(fooddata_loaded)),

@@ -1,1 +1,1 @@
-:- qcompile('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.pl').
+:- qcompile('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes/mm.pl').

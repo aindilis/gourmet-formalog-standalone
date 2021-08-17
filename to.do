@@ -1,4 +1,4 @@
-(I need to create persistence)
+(I need to create persistence for inventory items)
 (I need to update gourmet-formalog-standalone)
 (I need to ensure that the data files are not commited to Git,
  either by git ignore, or by rearranging everything into the data/

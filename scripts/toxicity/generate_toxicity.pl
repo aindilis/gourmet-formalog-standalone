@@ -11,7 +11,7 @@
 
 :- consult('/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/util/util.pl').
 
-toxicity_dir('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/').
+toxicity_dir('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity/').
 
 load_toxicity :-
 	toxicity_dir(ToxicityDir),

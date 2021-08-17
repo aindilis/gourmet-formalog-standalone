@@ -11,7 +11,7 @@ loadGourmet :-
 	    (	
 		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fooddata/fooddata'),
 		load_fooddata,
-		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm')
+		ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes/mm')
 	    )),
 
 	ensure_loaded('/var/lib/myfrdcsa/codebases/minor/free-life-planner/lib/multifile-and-dynamic-directives.pl'),

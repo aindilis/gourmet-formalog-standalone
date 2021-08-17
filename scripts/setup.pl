@@ -60,40 +60,43 @@ foreach my $file (split /\n/, `find /var/lib/myfrdcsa/codebases/minor/gourmet-fo
 }
 
 # WORDNET
-if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/') {
+if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet/') {
   print "CLONING WNPROLOG-3.1\n";
   # actually get it from here if possible instead: https://github.com/ekaf/wordnet-prolog
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts && git clone https://github.com/ekaf/wordnet-prolog';
-  system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet-prolog /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
-  system 'cp /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/to-wordnet/* /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet';
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/wordnet/prolog && ln -s ../wnprolog.pl .';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source && git clone https://github.com/ekaf/wordnet-prolog';
+  system 'mv /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet-prolog /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet';
+  system 'cp /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/to-wordnet/* /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/wordnet/prolog && ln -s ../wnprolog.pl .';
 }
 
 # RECIPES
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.pl') {
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes/mm.pl') {
   print "DOWNLOADING MEALMASTER RECIPE ARCHIVE\n";
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl.gz && gunzip mm.pl.gz';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes && wget https://frdcsa.org/~andrewdo/gourmet/mm.pl.gz && gunzip mm.pl.gz';
 }
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/mm.qlf') {
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/recipes/mm.qlf') {
   print "QCOMPILING mm.pl\n";
   system 'swipl -s /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/recipes/qcompile-mm.pl -g halt';
 }
 
 # FDC
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/FoodData_Central_csv_2019-12-17.zip') {
+if (! -d '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central') {
+  system 'mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central';
+}
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/FoodData_Central_csv_2019-12-17.zip') {
   print "DOWNLOADING FOODDATA CENTRAL CSV 2019-12-17\n";
-  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process && wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2019-12-17.zip';
+  system 'cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/ && wget https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_csv_2019-12-17.zip';
 }
-if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB") {
+if (! -d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central") {
   print "EXTRACTING FDC\n";
-  system "mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && unzip ../FoodData_Central_csv_2019-12-17.zip";
+  system "mkdir -p /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && unzip FoodData_Central_csv_2019-12-17.zip";
 }
-if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB") {
+if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central") {
   # remove the CSV of, download the pl for, and overwrite the problematic files
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/branded_food.pl.gz && gunzip branded_food.pl.gz";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food.pl.gz && gunzip food.pl.gz";
-  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB && wget https://frdcsa.org/~andrewdo/gourmet/food_nutrient.pl.gz && gunzip food_nutrient.pl.gz";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && wget https://frdcsa.org/~andrewdo/gourmet/branded_food.pl.gz && gunzip branded_food.pl.gz";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && wget https://frdcsa.org/~andrewdo/gourmet/food.pl.gz && gunzip food.pl.gz";
+  system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central && wget https://frdcsa.org/~andrewdo/gourmet/food_nutrient.pl.gz && gunzip food_nutrient.pl.gz";
 
   print "QCOMPILING FDC\n";
   system "swipl -s /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/generate_fooddata.pl -g halt";
@@ -101,12 +104,14 @@ if (-d "/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-
   die "no USDA-Food-DB directory\n";
 }
 
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/data/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/fndds/2017-2018 FNDDS At A Glance - FNDDS Ingredients.xlsx') {
   print "DOWNLOADING AND CONVERTING FNDDS\n";
   system "cd '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/fndds/' && ./download-and-convert-fndds.pl";
 }
 
-if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/data/OpenFoodToxTX22525_2020.xlsx') {
+if (! -f '/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/toxicity/OpenFoodToxTX22525_2020.xlsx') {
   print "DOWNLOADING AND CONVERTING FOOD TOXICITY DATABASE\n";
   system "cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/toxicity/ && ./setup-food-toxicity-qlfs.pl";
 }
+
+# FIXME do the fodmap basket data here, and do other sources
