@@ -4,7 +4,7 @@ map_non_nutrition_info_for_barcode_atom(Arguments,MappedNonNutritionInfo) :-
 	FDCNonNutrientNames = [invFn,brandOwner,description,ingredients],
 	view([1]),
 	argt(Arguments,invFn(invFn(idFn(gourmetFDC,FDC_ID),barcodeFn(BarcodeAtom)))),
-	findall(nf(NutritionixNonNutrientName,idFn(gourmetFDC,FDC_ID),Value),
+	findall(NonNutritionItem,
 		(
 		 view([3]),
 		 member(FDCNonNutrientName,FDCNonNutrientNames),
@@ -13,7 +13,8 @@ map_non_nutrition_info_for_barcode_atom(Arguments,MappedNonNutritionInfo) :-
 		 argt(Arguments,Query),
 		 view([fdcNonNutrientName,FDCNonNutrientName,value,Value]),
 		 fdcMetadataToNutritionix(FDCNonNutrientName,NutritionixNonNutrientName),
-		 view([nutritionixNonNutrientName,NutritionixNonNutrientName])
+		 view([nutritionixNonNutrientName,NutritionixNonNutrientName]),
+		 NonNutritionItem =.. [NutritionixNonNutrientName,idFn(gourmetFDC,FDC_ID),Value]
 		),
 		MappedNonNutritionInfo).
 	
