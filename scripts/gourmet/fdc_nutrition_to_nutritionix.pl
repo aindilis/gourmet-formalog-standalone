@@ -1,3 +1,158 @@
+%% [invFn,invFn(idFn(gourmetFDC,FDC_ID),barcodeFn(BarcodeAtom)),invCat,Branded_Food_Category,flpNameFn,ProductIDDescriptive,brandOwner,Brand_Owner,description,DESC,nutrition,NutritionSearchResults,ingredients,Ingredients,mappedNutritionInfo,MappedNutritionInfo])
+
+map_non_nutrition_info_for_barcode_atom(Arguments,MappedNonNutritionInfo) :-
+	FDCNonNutrientNames = [invFn,brandOwner,description,ingredients],
+	view([1]),
+	argt(Arguments,invFn(invFn(idFn(gourmetFDC,FDC_ID),barcodeFn(BarcodeAtom)))),
+	findall(nf(NutritionixNonNutrientName,idFn(gourmetFDC,FDC_ID),Value),
+		(
+		 view([3]),
+		 member(FDCNonNutrientName,FDCNonNutrientNames),
+		 view([4]),
+		 Query =.. [FDCNonNutrientName,Value],
+		 argt(Arguments,Query),
+		 view([fdcNonNutrientName,FDCNonNutrientName,value,Value]),
+		 fdcMetadataToNutritionix(FDCNonNutrientName,NutritionixNonNutrientName),
+		 view([nutritionixNonNutrientName,NutritionixNonNutrientName])
+		),
+		MappedNonNutritionInfo).
+	
+fdcMetadataToNutritionix(description,item_name).
+fdcMetadataToNutritionix(invFn,item_id).
+fdcMetadataToNutritionix(brandOwner,brand_name).
+fdcMetadataToNutritionix(ingredients,ingredient_statement).
+fdcMetadataToNutritionix(unknown_record,brand_id).
+fdcMetadataToNutritionix(unknown_record,updated_at).
+fdcMetadataToNutritionix(unknown_record,serving_weight_grams).
+fdcMetadataToNutritionix(unknown_record,item_description).
+fdcMetadataToNutritionix(unknown_record,serving_size_qty).
+fdcMetadataToNutritionix(unknown_record,serving_size_unit).
+fdcMetadataToNutritionix(unknown_record,servings_per_container).
+
+
+%% search_food_data_central('041196915051',[invFn,invFn(idFn(gourmetFDC,FDC_ID),barcodeFn(BarcodeAtom)),invCat,Branded_Food_Category,flpNameFn,ProductIDDescriptive,brandOwner,Brand_Owner,description,DESC,nutrition,NutritionSearchResults,ingredients,Ingredients,mappedNutritionInfo,MappedNutritionInfo])
+
+conversionFactor(Item,Item,1.0).
+conversionFactor(kilocalories,calories,1000.0).
+conversionFactor(grams,milligrams,1000.0).
+
+map_nutrition_info_for_barcode_atom(BarcodeAtom,MappedNutritionInfo) :-
+	get_nutrition_for_barcode_atom(BarcodeAtom,[FDC_ID,DESC,FDCNutritionInfo]),
+	view([FDC_ID,DESC,FDCNutritionInfo]),
+	findall(nf(NutritionixNutrientName,idFn(gourmetFDC,FDC_ID),Amount),
+		(
+		 member(result(FDCNutrientID,FDCNutrientName,FDCAmount,_FDCNutrientUnitName),FDCNutritionInfo),
+		 view(result([FDCNutrientID,FDCNutrientName,FDCAmount,_FDCNutrientUnitName])),
+		 fdcNutritionToNutritionix(FDCNutrientName,FDCNutrientUnitName,NutritionixNutrientName,NutritionixUnitName),
+		 conversionFactor(FDCNutrientUnitName,NutritionixUnitName,ConversionFactor),
+		 (   nonvar(ConversionFactor) ->
+		     (
+		      view([conversionFactor,ConversionFactor]),
+		      NutritionixAmount is FDCAmount * ConversionFactor,
+		      Amount =.. [NutritionixUnitName,NutritionixAmount]
+		     ) ;
+		     Amount = unknown(_)
+		 )
+		),
+		MappedNutritionInfo).
+
+%% prolog_list('619542','CAVATAPPI',
+%% 	    _prolog_list(result('1003','Protein','12.5','G'),
+%% 			 result('1004','Total lipid (fat)','1.7o9','G'),
+%% 			 result('1005','Carbohydrate, by difference','73.21','G'),
+%% 			 result('1008','Energy','357','KCAL'),
+%% 			 result('2000','Sugars, total including NLEA','3.57','G'),
+%% 			 result('1079','Fiber, total dietary','3.6','G'),
+%% 			 result('1087','Calcium, Ca','0','MG'),
+%% 			 result('1089','Iron, Fe','3.21','MG'),
+%% 			 result('1093','Sodium, Na','0','MG'),
+%% 			 result('1104','Vitamin A, IU','0','IU'),
+%% 			 result('1162','Vitamin C, total ascorbic acid','0','MG'),
+%% 			 result('1253','Cholesterol','0','MG'),
+%% 			 result('1257','Fatty acids, total trans','0','G'),
+%% 			 result('1258','Fatty acids, total saturated','0','G')
+%% 			)).
+
+%% barcode(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),'041196915051').
+%% nf(serving_weight_grams,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('239')).
+%% nf(protein,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('6')).
+%% updated_at(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown2('2017-01-24T07:13:14.000Z')).
+%% nf(ingredient_statement,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown1('Chicken Broth, Cooked Meatballs (Pork, Beef, Water, Eggs, Textured Soy Protein [Soy Protein Concentrate, Caramel Color], Romano Cheese [Made from Sheep_SINGLEQUOTE_s Milk, Cultures, Salt, Enzymes], Bread Crumbs [Bleached Wheat Flour, Dextr\
+%% ose, Salt, Yeast], Corn Syrup, Onion, Soy Protein Concentrate, Salt, Spice, Sodium Phosphate, Garlic Powder, Dried Parsley, Onion Powder, Natural Flavor), Carrots, Tubetti Pasta (Semolina Wheat, Egg Whites), Spinach. Contains Less than 2% of: Onions, Modified Food Starch, Salt, Chicken Fat, Carrot Puree, Corn Protein\
+%%  (Hydrolyzed), Potassium Chloride, Onion Powder, Sugar, Yeast Extract, Spice, Garlic Powder, Soybean Oil, Natural Flavor, Beta Carotene (Color).')).
+%% nf(serving_size_unit,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unit(cup)).
+%% nf(vitamin_c_dv,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),percent('0')).
+%% nf(calories_from_fat,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),calories('35')).
+%% nf(calories,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),calories('120')).
+%% nf(cholesterol,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),milligrams('10')).
+%% nf(servings_per_container,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),servings('2')).
+%% nf(dietary_fiber,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('1')).
+%% nf(monounsaturated_fat,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('1.5')).
+%% item_description(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown2('Italian-Style Wedding')).
+%% nf(vitamin_a_dv,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),percent('25')).
+%% nf(iron_dv,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),percent('4')).
+%% nf(calcium_dv,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),percent('2')).
+%% nf(polyunsaturated_fat,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('0')).
+%% item_id(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown2('51c37b3c97c3e6d27282496f')).
+%% nf(serving_size_qty,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),quantity('1')).
+%% nf(sodium,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),milligrams('690')).
+%% nf(total_carbohydrate,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('15')).
+%% nf(sugars,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('2')).
+%% item_name(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown2('Italian-Style Wedding Soup')).
+%% brand_name(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown2('Progresso')).
+%% nf(total_fat,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('4')).
+%% brand_id(idFn(nutritionix,'51c37b3c97c3e6d27282496f'),unknown2('51db37b4176fe9790a898803')).
+%% nf(trans_fatty_acid,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('0')).
+%% nf(saturated_fat,idFn(nutritionix,'51c37b3c97c3e6d27282496f'),grams('1.5')).
+
+
+%%%%%%
+
+
+%% setof(Unit_Name,Unit_Name^nutrient(_,_,Unit_Name,_,_),Results),write_list(Results).
+unit_name_mapping('G',grams).
+unit_name_mapping('IU',unknown).
+unit_name_mapping('KCAL',kilocalories).
+unit_name_mapping(kJ,unknown).
+unit_name_mapping('MG',milligrams).
+unit_name_mapping('MG_ATE',unknown).
+unit_name_mapping('SP_GR',unknown).
+unit_name_mapping('UG',unknown).
+
+
+%% NON NUTRIENT FACTS FDC
+
+%% %% ?FDC_ID = '609852'.
+%% %% ?BarcodeAtom = '041196915051'.
+%% -- ?Branded_Food_Category = 'Prepared Soups'.
+%% -- ?ProductIDDescriptive = 'progressoTraditionalItalianStyleWeddingSoup_GENERALMILLSSALESINC.'.
+%% %% ?Brand_Owner = 'GENERAL MILLS SALES INC.'.
+%% %% ?DESC = 'Progresso Traditional Italian-Style Wedding Soup'.
+%% -- ?NutritionSearchResults = _prolog_list(result('1003','Protein','2.51','G'),result('1004','Total lipid (fat)','1.67','G'),result('1005','Carbohydrate, by difference','6.28','G'),result('2000','Sugars, total including NLEA','0.84','G'),result('1079','Fiber, total dietary','0.4','G'),result('1087','Calcium, Ca','8','MG'),result('1089','Iron, Fe','0.3','MG'),result('1092','Potassium, K','134','MG'),result('1093','Sodium, Na','289','MG'),result('1104','Vitamin A, IU','523','IU'),result('1162','Vitamin C, total ascorbic acid','0','MG'),result('1253','Cholesterol','4','MG'),result('1257','Fatty acids, total trans','0','G'),result('1258','Fatty acids, total saturated','0.63','G'),result('1292','Fatty acids, total monounsaturated','0.63','G'),result('1293','Fatty acids, total polyunsaturated','0','G')).
+%% %% ?Ingredients = 'CHICKEN BROTH, COOKED TUBETTI PASTA (WATER, SEMOLINA WHEAT, EGG WHITE), FULLY COOKED MEATBALLS (PORK, BEEF, WATER, TEXTURED SOY PROTEIN CONCENTRATE, SOY PROTEIN CONCENTRATE, ROMANO CHEESE [PASTEURIZED PART-SKIM COW_SINGLEQUOTE_S MILK, CHEESE CULTURES, SALT, ENZYMES], BREAD CRUMBS [BLEACHED WHEAT FLOUR, DEXTROSE, SALT, YEAST], CORN SYRUP, ONIONS, SALT, SODIUM PHOSPHATE, SPICES, GARLIC POWDER, PARSLEY, NATURAL FLAVOR), CARROTS, SPINACH. CONTAINS LESS THAN 2% OF: ONIONS, MODIFIED FOOD STARCH, CORN PROTEIN (HYDROLYZED), SALT, CARROT PUREE, POTASSIUM CHLORIDE, ONION POWDER, SUGAR, TOMATO EXTRACT, SPICE, GARLIC POWDER, MALTODEXTRIN, FLAVORING, NATURAL FLAVOR, BETA CAROTENE (COLOR).'.
+%% --- ?MappedNutritionInfo = _prolog_list(nf(protein,idFn(gourmetFDC,'609852'),grams('2.51')),nf(total_fat,idFn(gourmetFDC,'609852'),grams('1.67')),nf(total_carbohydrate,idFn(gourmetFDC,'609852'),grams('6.28')),nf(sugars,idFn(gourmetFDC,'609852'),grams('0.84')),nf(dietary_fiber,idFn(gourmetFDC,'609852'),grams('0.4')),nf(sodium,idFn(gourmetFDC,'609852'),milligrams('289')),nf(cholesterol,idFn(gourmetFDC,'609852'),milligrams('4')),nf(trans_fatty_acid,idFn(gourmetFDC,'609852'),grams('0')),nf(saturated_fat,idFn(gourmetFDC,'609852'),grams('0.63')),nf(monounsaturated_fat,idFn(gourmetFDC,'609852'),grams('0.63')),nf(polyunsaturated_fat,idFn(gourmetFDC,'609852'),grams('0'))).
+
+
+%% NON NUTRIENT FACTS NUTRITIONIX
+
+%% %% nf(serving_size_qty,idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),quantity('1')).
+%% %% brand_id(idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown2('51db381b176fe9790a89b570')).
+%% %% brand_name(idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown2('Hungry-Man')).
+%% %% nf(servings_per_container,idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),servings('1')).
+%% %% nf(serving_size_unit,idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unit(package)).
+%% %% nf(serving_weight_grams,idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),grams('454')).
+%% %% updated_at(idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown2('2020-09-03T14:49:53.000Z')).
+%% %% item_id(idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown2('51d2fd12cc9bff111580e7b8')).
+%% %% item_name(idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown2('Boneless Fried Chicken')).
+%% %% nf(ingredient_statement,idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown1('Boneless Fried Chicken Patties (Ground Chicken, Enriched Flour [Wheat Flour, Niacin, Reduced Iron, Thiamine Mononitrate, Riboflavin, Folic Acid], Water, Partially Hydrogenated Soybean Oil with TBHQ and Citric Acid as Preservatives, Soy Protein Concentrate, Isolated Oat Product, Salt, Sodium Phosphate, Monosodium Glutamate, Dextrose, Spice Extract), Mashed Potatoes (Water, Reconstituted Potatoes, [Mono and Diglycerides, Sodium Acid Pyrophosphate, Citric Acid], Heavy Cream, Butter [Cream, Salt], Salt, Margarine [Partially Hydrogenated Soybean Oil with TBHQ and Citric Acid as Preservatives, Water, Mono and Diglycerides {BHT, Citric Acid}, Beta Carotene for Color {Corn Oil, Tocopherol} Vitamin A Palmitate], Potato Flavor [Potatoes, Water, Buttermilk, Butter Oil, Salt, Natural Flavors, Soy Lecithin, Calcium Chloride, Tocopherol, Enzyme]), Corn, Brownie (Sugar, Water, Wheat Flour, Partially Hydrogenated Soybean Oil with TBHQ and Citric Acid as Preservatives, Cocoa, Eggs, Margarine [Partially Hydrogenated Soybean Oil and/or Soybean Oils, Water, Mono and Diglycerides, Beta Carotene for Color, May Also Contain Vitamin A Palmitate, Salt, Whey, Soy Lecithin, Natural Flavor], Acacia and Xanthan Gums, Sodium Bicarbonate [Hydrogenated Cottonseed Oil], Salt, Natural and Artificial Vanilla Flavor [Water, Propylene Glycol, Ethanol, Caramel Color]), Sauce (Water, Sugar, Margarine [Soybean Oil, Partially Hydrogenated Soybean Oil, Water, Salt, Whey, Soy Lecithin, Mono and Diglycerides, Natural Flavor, Beta Carotene {Color}, Vitamin A Palmitate], Salt, Partially Hydrogenated Soybean Oil with TBHQ and Citric Acid as Preservatives).')).
+%% %% item_description(idFn(nutritionix,'51d2fd12cc9bff111580e7b8'),unknown2('Boneless')).
+
+
+
+%%%%%%%%%%%%%%%
+
+
+
 %% setof([Unit_Name,Pred],ID^(nf(Unit_Name,idFn(nutritionix,ID),Value),Value =.. [Pred|Rest]),Names),write_list(Names).
 
 %% findall(fdcNutritionToNutritionix(Name,Converted_Name,arg3,arg4),(nutrient(Id,Name,Unit_Name,Nutrient_Nbr,Rank),unit_name_mapping(Unit_Name,Converted_Name)),Results),write_list(Results).
