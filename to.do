@@ -1,3 +1,9 @@
+(<aindilis> how to convert from [a,1,b,2] -> [a(1),b(2)] ?
+ sakasama:
+ nest([],[]). nest([A,B|R],[A(B)|S]) :-
+ nest(R,S).
+ )
+
 (persist the results of mapping from FDC to Nutritionix)
 (finish the mapping from FDC to Nutritionix format)
 
