@@ -1,15 +1,3 @@
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
-WARNING DO NOT USE RIGHT NOW UNTIL REFACTORING FINISHED
-
----
-
 god-mode on your food.
 
 This is the backend to a very powerful open source meal planner called
@@ -53,9 +41,22 @@ Please note that it might fail to build food_nutrient.qlf and possibly
 some others, in which case: try this:
 
 ```
-docker container ps -a
+docker ps -a
 docker container exec -it <CONTAINER> bash
-cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/process/USDA-Food-DB/ && swipl -g "qcompile('food_nutrient.pl')."
+```
+
+Or if there are no running Gourmet-Formalog containers, then:
+
+```
+docker images
+docker run -it <IMAGE> bash
+```
+
+Then:
+
+```
+cd /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/ && swipl -g "qcompile('food_nutrient.pl')."
+chown andrewdo.andrewdo /var/lib/myfrdcsa/codebases/minor/gourmet-formalog/data/source/food-data-central/food_nutrient.qlf
 cd /home/andrewdo && ./run.sh
 ```
 

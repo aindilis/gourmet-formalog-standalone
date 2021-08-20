@@ -25,7 +25,10 @@ testGourmetFormalog :-
 	
 :-
 	(   gourmetFormalogFlag(pengines) -> 
-	    ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/gourmet_formalog.pl') ;
+	    (
+	     ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/gourmet_formalog.pl'),
+	     module(user)
+	    ) ;	
 	    true),
 	ensure_loaded('/var/lib/myfrdcsa/codebases/minor/gourmet-formalog/scripts/gourmet/gourmet.pl'),
 	ensure_loaded('/var/lib/myfrdcsa/codebases/minor/cyc-common/frdcsa/sys/flp/autoload/cyc_api.pl').
@@ -34,3 +37,4 @@ testGourmetFormalog :-
 
 :- nl,log_message('DONE LOADING GOURMET-FORMALOG.').
 formalogModuleLoaded(gourmetFormalog).
+
