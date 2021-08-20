@@ -1,3 +1,9 @@
+(http://ceur-ws.org/Vol-981/AImWD2013paper1.pdf)
+(https://foodon.org/)
+(https://code.google.com/archive/p/gloze/wikis/CycQL.wiki)
+(https://frdcsa.org/~andrewdo/gourmet/notes-1.subl)
+(https://www.swi-prolog.org/pldoc/man?section=semweb-rdf11)
+
 (I need to create persistence for inventory items)
 (I need to update gourmet-formalog-standalone)
 (I need to ensure that the data files are not commited to Git,
