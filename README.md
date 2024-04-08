@@ -1,5 +1,3 @@
-Here is an updated README.md for the gourmet-formalog-standalone project that incorporates key information from the various documents you provided:
-
 # 🍽️ Gourmet-Formalog-Standalone: Your AI-Powered Meal Planning Companion 🍳
 
 [![Docker Build Status](https://img.shields.io/docker/build/aindilis/gourmet-formalog-standalone)](https://hub.docker.com/r/aindilis/gourmet-formalog-standalone)
