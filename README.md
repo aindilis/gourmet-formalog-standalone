@@ -1,26 +1,39 @@
+Here is an updated README.md for the gourmet-formalog-standalone project that incorporates key information from the various documents you provided:
+
 # 🍽️ Gourmet-Formalog-Standalone: Your AI-Powered Meal Planning Companion 🍳
 
 [![Docker Build Status](https://img.shields.io/docker/build/aindilis/gourmet-formalog-standalone)](https://hub.docker.com/r/aindilis/gourmet-formalog-standalone)
 [![GitHub License](https://img.shields.io/github/license/aindilis/gourmet-formalog-standalone)](https://github.com/aindilis/gourmet-formalog-standalone/blob/main/LICENSE)
 
-Welcome to Gourmet-Formalog-Standalone, the powerful, open-source meal planner that puts you in control of your nutrition! 🥗 Built on a robust Prolog backend, Gourmet-Formalog-Standalone integrates a wealth of food-related data to help you create personalized, healthy meal plans tailored to your unique needs and preferences. 🍎
+## 🌟 Introduction
 
-## 🌟 Features
+Welcome to Gourmet-Formalog-Standalone, a powerful, open-source meal planner that puts you in control of your nutrition! 🥗 Built on a robust Prolog backend, Gourmet-Formalog-Standalone integrates a wealth of food-related data to help you create personalized, healthy meal plans tailored to your unique needs and preferences. 🍎
+
+Gourmet-Formalog-Standalone is part of the Free Life Planner (FLP) project, which aims to create a free, open-source AI system to help people manage various aspects of daily life. The meal planner aims to improve nutrition, taste, cost, and convenience for individuals and families. 
+
+## 🚀 Features
 
 - 📊 Comprehensive food databases, including Food Data Central, Open Food Toxicity DB, SOAR Recipe Archive, Prolog WordNet, and FODMAP DB
-- ⚡ Lightning-fast data loading using the Quick Load Format (QLF)
-- 🧩 Seamless integration with the Free Life Planner (FLP) for holistic nutrition management
-- 🍳 Intelligent meal planning algorithms (coming soon!)
-- 🖥️ Intuitive user interface (in development)
+- ⚡ Lightning-fast data loading using the Quick Load Format (QLF)  
+- 🍳 Intelligent meal planning algorithms tailored to your preferences and health needs
+- 🖥️ Intuitive web interface for scanning barcodes, viewing nutrition info, and more
 - 🌐 Accessible via various Pengines libraries from multiple languages
+- 🔍 Powerful food ontology with knowledge of substitutions, properties, and similarities
+- 🧪 Integration with health data to support specialized diets (GERD, diabetes, etc)
+- 🤝 Community ownership via free/libre/open-source license (GPL)
 
-## 🚀 Getting Started
+## 💡 Philosophy & Motivation
 
-### Prerequisites
+As free software that can be copied and redistributed at near-zero cost, Gourmet-Formalog-Standalone and the FLP have the potential to help alleviate hunger, disease, and other problems at a global scale. By packaging a comprehensive set of AI capabilities into an integrated system and releasing it under a free software license, we aim to create a universal tool that can adapt to serve the needs of people worldwide.
 
-- [Docker](https://www.docker.com/) installed on your system
+Some key philosophical and technical points behind the project:
 
-### Installation
+- Separate software components can be integrated to create more powerful systems
+- Free software is non-rivalrous and can be copied endlessly to benefit more people
+- Modeling reality symbolically and reasoning over digital twins can help manage real-world complexity
+- Releasing under a free/libre/open-source license (GPL) enables community ownership, adaptability, and broad distribution to help the most people
+
+## 🔧 Getting Started 
 
 1. Clone the Gourmet-Formalog-Standalone repository:
 
@@ -80,6 +93,7 @@ cd /home/andrewdo && ./run.sh
 ```
 
 ## 🎨 Usage Examples
+
 
 Once Gourmet-Formalog-Standalone is running, you can interact with it using Prolog queries. Here are a few examples:
 
@@ -141,18 +155,45 @@ For more information on meal planning and related resources, please visit:
 - [Cooking Assistant](https://frdcsa.org/~andrewdo/WebWiki/CookingAssistant.html)
 - [Recipe Recommendation System](https://frdcsa.org/~andrewdo/WebWiki/RecipeRecommendationSystem.html)
 
-## 🤝 Contributing
+## 🛣️ Roadmap
 
-We welcome contributions from the community! If you'd like to help improve Gourmet-Formalog-Standalone, please feel free to submit pull requests, report issues, or share your ideas for new features.
+### Completed ✅
 
-## 📄 License
+- Barcode scanning and nutrition lookup for 100,000s of products 
+- Rapid loading of comprehensive food, recipe, and nutrition databases
+- Temporal metric planning for nutritionally tailored meal plans
+- Interactive cooking assistant to walk through recipes step-by-step
 
-Gourmet-Formalog-Standalone is released under the [GNU General Public License v3.0](https://github.com/aindilis/gourmet-formalog-standalone/blob/main/LICENSE).
+### In Progress 🚧 
 
-## 🙏 Acknowledgements
+- Support for specialized medical diets (diabetes, GERD, etc)
+- Comprehensive food ontology with knowledge of substitutions and properties 
+- Natural language recipe parsing and normalization
+- Recommender system for recipes and ingredients based on preferences
+
+### Planned 📅
+
+- Multi-user meal planning that factors in schedules, transport, budgets
+- Modeling of food spoilage, inventory, and shopping needs
+- Detailed nutrition tracking and empirical analysis 
+- Integration with telemedicine, symptom tracking, and health records
+
+## 🌍 Join Us in Ending Information Poverty
+
+The broader vision of the FLP is to end the "information dark ages" where critical knowledge doesn't reach the people who need it in time. Whether it's knowing which foods are safe for a medical condition or having step-by-step guidance in an emergency, we believe AI can democratize access to life-saving information and planning abilities.
+
+Gourmet-Formalog-Standalone is one component of this mission, focused on the universal need for healthy, affordable, and tailored nutrition. By modeling each individual's situation, integrating diverse data sources, and generating optimized plans, we hope this libre meal planner can help improve health outcomes for people worldwide.
+
+We welcome contributors to join us in realizing this vision! As a free/libre/open-source project, Gourmet-Formalog-Standalone will always remain community-owned and adaptable to local needs. Financial support can also help accelerate development. Together we can build AI that empowers people everywhere to live better.
+
+## 🙏 Acknowledgements 
 
 We would like to thank all the contributors and open-source projects that have made Gourmet-Formalog-Standalone possible, including the developers of the various food databases and libraries we rely on.
 
+## 📄 License
+
+Gourmet-Formalog-Standalone is proudly released under the [GNU General Public License v3.0](https://github.com/aindilis/gourmet-formalog-standalone/blob/main/LICENSE) as free/libre/open-source software.
+
 ---
 
-🍽️ Happy meal planning with Gourmet-Formalog-Standalone! 🥦�🍗🥑
+🍽️ Here's to healthy eating for everyone with the power of AI! 🥦🥑🍗🍚🥕
