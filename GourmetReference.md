@@ -87,93 +87,93 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 - Settings and preference configuration
 
 ### Mobile App
-- [ ] <code>[20%]</code> Native mobile app for iOS and Android (in development)
+- [ ] <code>[0%]</code> Native mobile app for iOS and Android (in development)
 - Barcode scanning functionality
 - Quick meal logging and inventory updates
 - Shopping list management
 
 ### Voice Assistant Integration
-- ✅ Basic Alexa skill for querying meal plans and adding items to shopping list
-- [ ] <code>[40%]</code> Enhanced voice interactions for hands-free cooking assistance
+- [ ] <code>[50%]</code> Basic Alexa skill and Rhasspy interface for querying meal plans and adding items to shopping list
+- [ ] <code>[25%]</code> Enhanced voice interactions for hands-free cooking assistance
 
 ## 5. Meal Planning
 
 ### Plan Generation
-- ✅ Constraint-based planning using nutritional requirements, preferences, and inventory
-- ✅ Support for different plan durations (daily, weekly, monthly)
-- [ ] <code>[70%]</code> Consideration of leftover ingredients and batch cooking opportunities
+- [ ] <code>[10%]</code> Constraint-based planning using nutritional requirements, preferences, and inventory
+- [ ] <code>[20%]</code> Support for different plan durations (daily, weekly, monthly)
+- [ ] <code>[0%]</code> Consideration of leftover ingredients and batch cooking opportunities
 
 ### Customization
-- ✅ Ability to swap out suggested meals
-- ✅ Manual addition of custom meals to the plan
+- [ ] <code>[0%]</code> Ability to swap out suggested meals
+- [ ] <code>[0%]</code> Manual addition of custom meals to the plan
 - [ ] <code>[50%]</code> Fine-tuning of nutritional targets and preferences
 
 ### Optimization
 - ✅ Basic cost optimization
-- [ ] <code>[60%]</code> Advanced multi-objective optimization (nutrition, cost, preparation time, variety)
+- [ ] <code>[0%]</code> Advanced multi-objective optimization (nutrition, cost, preparation time, variety)
 
 ## 6. Recipe Management
 
 ### Recipe Database
 - ✅ Integration of 300,000+ recipes from SOAR Recipe Archive
-- ✅ User ability to add custom recipes
-- [ ] <code>[40%]</code> Automatic nutritional analysis of custom recipes
+- [ ] <code>[0%]</code> User ability to add custom recipes
+- [ ] <code>[10%]</code> Automatic nutritional analysis of custom recipes
 
 ### Recipe Recommendations
-- ✅ Basic collaborative filtering for personalized suggestions
-- [ ] <code>[70%]</code> Advanced ML-based recommendation system considering nutritional needs, preferences, and past behavior
+- [ ] <code>[0%]</code> Basic collaborative filtering for personalized suggestions
+- [ ] <code>[20%]</code> Advanced ML-based recommendation system considering nutritional needs, preferences, and past behavior
 
 ### Recipe Scaling and Adjustment
-- ✅ Automatic scaling of recipes based on serving size
-- [ ] <code>[30%]</code> Intelligent ingredient substitution suggestions
+- [ ] <code>[0%]</code> Automatic scaling of recipes based on serving size
+- [ ] <code>[10%]</code> Intelligent ingredient substitution suggestions
 
 ## 7. Inventory Management
 
 ### Pantry Tracking
 - ✅ Manual inventory input
 - ✅ Barcode scanning for quick item addition
-- [ ] <code>[80%]</code> Automatic inventory deduction based on meal plan usage
+- [ ] <code>[0%]</code> Automatic inventory deduction based on meal plan usage
 
 ### Expiration Management
-- ✅ Tracking of product expiration dates
-- [ ] <code>[60%]</code> Smart notifications for items nearing expiration
-- [ ] <code>[40%]</code> Suggestion of recipes to use soon-to-expire items
+- [ ] <code>[10%]</code> Tracking of product expiration dates
+- [ ] <code>[10%]</code> Smart notifications for items nearing expiration
+- [ ] <code>[0%]</code> Suggestion of recipes to use soon-to-expire items
 
 ### Shopping List Generation
-- ✅ Automatic list creation based on meal plans and inventory
 - ✅ Manual addition and removal of items
-- [ ] <code>[50%]</code> Integration with store layouts for optimized shopping routes
+- [ ] <code>[0%]</code> Automatic list creation based on meal plans and inventory
+- [ ] <code>[0%]</code> Integration with store layouts for optimized shopping routes
 
 ## 8. Nutrition Analysis
 
 ### Nutritional Calculations
 - ✅ Calculation of macronutrients (protein, carbs, fats) and calories
-- ✅ Tracking of essential vitamins and minerals
-- [ ] <code>[70%]</code> Consideration of bioavailability and nutrient interactions
+- [ ] <code>[0%]</code> Tracking of essential vitamins and minerals
+- [ ] <code>[0%]</code> Consideration of bioavailability and nutrient interactions
 
 ### Reporting and Visualization
 - ✅ Basic nutritional overview of meal plans
-- [ ] <code>[40%]</code> Detailed nutritional reports and trend analysis
-- [ ] <code>[20%]</code> Visual representations of nutritional balance
+- [ ] <code>[0%]</code> Detailed nutritional reports and trend analysis
+- [ ] <code>[0%]</code> Visual representations of nutritional balance
 
 ### Goal Setting and Tracking
-- ✅ Basic goal setting for macronutrients
-- [ ] <code>[50%]</code> Advanced health goal tracking and recommendations
+- [ ] <code>[0%]</code> Basic goal setting for macronutrients
+- [ ] <code>[0%]</code> Advanced health goal tracking and recommendations
 
 ## 9. Shopping and Ordering
 
 ### Grocery Store Integration
-- ✅ Integration with major online grocery retailers
-- [ ] <code>[30%]</code> Price comparison across multiple stores
-- [ ] <code>[20%]</code> Support for local and specialty stores
+- [ ] <code>[10%]</code> Integration with major online grocery retailers
+- [ ] <code>[0%]</code> Price comparison across multiple stores
+- [ ] <code>[0%]</code> Support for local and specialty stores
 
 ### Order Optimization
-- ✅ Basic order consolidation to minimize delivery fees
-- [ ] <code>[40%]</code> Advanced order splitting for cost optimization across stores
+- [ ] <code>[0%]</code> Basic order consolidation to minimize delivery fees
+- [ ] <code>[0%]</code> Advanced order splitting for cost optimization across stores
 
 ### Delivery Tracking
 - ✅ Basic order status tracking
-- [ ] <code>[30%]</code> Integration with delivery services for real-time updates
+- [ ] <code>[0%]</code> Integration with delivery services for real-time updates
 
 ## 10. Special Diets and Restrictions
 
@@ -185,7 +185,7 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 - [ ] <code>[0%]</code> Low-FODMAP
 
 ### Allergy Management
-- ✅ Common allergen avoidance (e.g., nuts, dairy, shellfish)
+- [ ] <code>[0%]</code> Common allergen avoidance (e.g., nuts, dairy, shellfish)
 - [ ] <code>[0%]</code> Customizable allergen profiles
 - [ ] <code>[0%]</code> Cross-contamination risk assessment
 
