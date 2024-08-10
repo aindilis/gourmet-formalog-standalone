@@ -41,7 +41,7 @@ Gourmet is part of the larger Free Life Planner (FLP) project, which aims to cre
 
 For detailed installation instructions, please see the [INSTALL.md](INSTALL.md) file.
 
-To learn more about meal planning and related resources, visit our [Meal Planning Resources](https://frdcsa.org/~andrewdo/WebWiki/MealPlanningResources.html) page.
+To learn more about meal planning and related resources, visit our [Meal Planning Resources](https://frdcsa.org/~andrewdo/WebWiki/MealPlanningResources.html) and/or [Gourmet Reference Manual](https://github.com/aindilis/gourmet-formalog-standalone/blob/main/GourmetReference.md) pages.
 
 ## 🤝 Contributing
 
