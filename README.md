@@ -1,5 +1,3 @@
-Here's a draft of a new markdown document for Gourmet that emphasizes its features and capabilities rather than technical details:
-
 # Gourmet: Your AI-Powered Meal Planning Companion
 
 Gourmet is a powerful, open-source meal planner designed to help you take control of your nutrition, save money, and simplify meal preparation. Built on advanced AI and planning algorithms, Gourmet integrates a wealth of food-related data to create personalized, healthy meal plans tailored to your unique needs and preferences.
