@@ -47,25 +47,23 @@ Gourmet is actively developed as part of the Free Life Planner (FLP) project. Wh
 ## 2. Features
 
 ### Completed Features
-- ✅ Comprehensive food databases integration (Food Data Central, SOAR Recipe Archive)
+- ✅ Comprehensive food databases integration (Food Data Central, Nutritionix, SOAR Recipe Archive)
 - ✅ Barcode scanning for quick product information lookup
 - ✅ Basic meal plan generation based on nutritional requirements
-- ✅ Recipe recommendation system
-- ✅ Interactive cooking assistant for guided recipe preparation
-- ✅ Inventory management with product expiration tracking
-- ✅ Integration with major online grocery retailers for easy ordering
+- [ ] <code>[0%]</code> Recipe recommendation system
+- [ ] <code>[30%]</code> Interactive cooking assistant for guided recipe preparation
+- [ ] <code>[30%]</code> Inventory management with product expiration tracking
+- [ ] <code>[15%]</code> Integration with major online grocery retailers for easy ordering
 
 ### In Progress Features
-- [ ] <code>[75%]</code> Advanced dietary preference and restriction handling
-- [ ] <code>[60%]</code> AI-powered recipe creation and modification
-- [ ] <code>[50%]</code> Comprehensive food ontology for ingredient relationships and substitutions
-- [ ] <code>[40%]</code> Natural language processing for recipe import and normalization
-- [ ] <code>[30%]</code> Integration with smart kitchen appliances
+- [ ] <code>[5%]</code> Advanced dietary preference and restriction handling
+- [ ] <code>[0%]</code> AI-powered recipe creation and modification
+- [ ] <code>[10%]</code> Comprehensive food ontology for ingredient relationships and substitutions
+- [ ] <code>[30%]</code> Natural language processing for recipe import and normalization
 
 ### Planned Features
 - [ ] Meal plan optimization for long-term health outcomes
 - [ ] Collaborative meal planning for households and groups
-- [ ] Augmented reality (AR) cooking assistance
 - [ ] Integration with personal health data for tailored nutrition advice
 - [ ] Seasonal and local food prioritization
 
@@ -73,7 +71,7 @@ Gourmet is actively developed as part of the Free Life Planner (FLP) project. Wh
 
 Gourmet is built on a modular architecture that allows for easy expansion and integration with other systems. Key components include:
 
-- Core Planning Engine: Prolog-based constraint solver for meal plan generation
+- Core Planning Engine: Prolog-based PDDL planner for meal plan generation
 - Data Layer: Manages interactions with various food and recipe databases
 - User Interface: Web-based frontend for user interactions
 - AI Module: Handles machine learning tasks for personalization and recipe analysis
