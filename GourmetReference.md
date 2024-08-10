@@ -1,5 +1,3 @@
-Certainly! I'd be happy to create a comprehensive reference manual for Gourmet, following a similar layout to the FLP reference manual. Here's a draft of the Gourmet Reference Manual:
-
 # Gourmet Reference Manual
 
 ## Table of Contents
