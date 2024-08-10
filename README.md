@@ -39,7 +39,7 @@ Gourmet is part of the larger Free Life Planner (FLP) project, which aims to cre
 
 ## 🚀 Getting Started
 
-For detailed installation instructions, please see the [INSTALL.txt](INSTALL.txt) file.
+For detailed installation instructions, please see the [INSTALL.md](INSTALL.md) file.
 
 To learn more about meal planning and related resources, visit our [Meal Planning Resources](https://frdcsa.org/~andrewdo/WebWiki/MealPlanningResources.html) page.
 
