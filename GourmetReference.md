@@ -185,7 +185,7 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 
 ### Reporting and Visualization
 - ✅ Basic nutritional overview of meal plans
-- [ ] <code>[0%]</code] Detailed nutritional reports and trend analysis
+- [ ] <code>[0%]</code> Detailed nutritional reports and trend analysis
 - 🚧 Visual representations of nutritional balance
 
 ### User Modeling and Health Tracking
@@ -270,8 +270,8 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 - 🚧 User-generated recipe repository
 
 ### External Integrations
-- [ ] <code>[0%]</code] Fitness tracker data for personalized energy requirements
-- [ ] <code>[0%]</code] Weather data for seasonal recipe suggestions
+- [ ] <code>[0%]</code> Fitness tracker data for personalized energy requirements
+- [ ] <code>[0%]</code> Weather data for seasonal recipe suggestions
 - Integration with Hetionet for empirical analysis of nutritional factors associated with medical conditions
 
 ## 13. Privacy and Security
