@@ -1,6 +1,6 @@
 # Gourmet Reference Manual
 
-## This Document is Under Construction
+## Under Construction
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -50,22 +50,29 @@ Gourmet is actively developed as part of the Free Life Planner (FLP) project. Wh
 - ✅ Comprehensive food databases integration (Food Data Central, Nutritionix, SOAR Recipe Archive)
 - ✅ Barcode scanning for quick product information lookup
 - ✅ Basic meal plan generation based on nutritional requirements
-- [ ] <code>[0%]</code> Recipe recommendation system
-- [ ] <code>[30%]</code> Interactive cooking assistant for guided recipe preparation
-- [ ] <code>[30%]</code> Inventory management with product expiration tracking
-- [ ] <code>[15%]</code> Integration with major online grocery retailers for easy ordering
+- ✅ PGourmet system
+- ✅ Door sensor alerts on fridge and freezer for portion control
+- ✅ Integration with WordNet and OpenCyc for food ontology
 
 ### In Progress Features
-- [ ] <code>[5%]</code> Advanced dietary preference and restriction handling
-- [ ] <code>[0%]</code> AI-powered recipe creation and modification
-- [ ] <code>[10%]</code> Comprehensive food ontology for ingredient relationships and substitutions
-- [ ] <code>[30%]</code> Natural language processing for recipe import and normalization
+- [ ] <code>[66%]</code> PDDL-based meal planner
+- [ ] <code>[50%]</code> Gourmet-Formalog-Standalone system
+- [ ] <code>[50%]</code> Interactive cooking assistant
+- [ ] <code>[40%]</code> Seamless integration with FLP's generalized action planning systems
+- [ ] <code>[40%]</code> Self-discipline coach software
+- [ ] <code>[33%]</code> Food ontology development
+- [ ] <code>[25%]</code> Interactive cooking assistant
+- [ ] <code>[20%]</code> Logging and planning of macros
+- [ ] <code>[20%]</code> Follow-up dialog regarding intent when fridge and freezer accessed
 
 ### Planned Features
-- [ ] Meal plan optimization for long-term health outcomes
-- [ ] Collaborative meal planning for households and groups
-- [ ] Integration with personal health data for tailored nutrition advice
-- [ ] Seasonal and local food prioritization
+- Meal plan optimization for long-term health outcomes
+- Collaborative meal planning for households and groups
+- Integration with personal health data for tailored nutrition advice
+- Seasonal and local food prioritization
+- Freezer cooking support
+- Advanced food safety management
+- Emergency food and water provision management
 
 ## 3. System Architecture
 
@@ -77,6 +84,15 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 - AI Module: Handles machine learning tasks for personalization and recipe analysis
 - Integration Layer: Manages connections with external services (e.g., grocery stores, FLP modules)
 
+### Meal Planning Resources
+- Multiple meal planning and preparation systems
+- Gourmet-Formalog-Standalone (using OpenFoodTox, Basket)
+- PDDL-based meal planner
+- Interactive cooking assistant
+- PGourmet
+- Gourmet
+- st0opkid's MealSolver
+
 ## 4. User Interface
 
 ### Web Interface
@@ -87,7 +103,7 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 - Settings and preference configuration
 
 ### Mobile App
-- [ ] <code>[0%]</code> Native mobile app for iOS and Android (in development)
+- 🚧 Native mobile app for iOS and Android (in development)
 - Barcode scanning functionality
 - Quick meal logging and inventory updates
 - Shopping list management
@@ -99,107 +115,138 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 ## 5. Meal Planning
 
 ### Plan Generation
-- [ ] <code>[10%]</code> Constraint-based planning using nutritional requirements, preferences, and inventory
-- [ ] <code>[20%]</code> Support for different plan durations (daily, weekly, monthly)
-- [ ] <code>[0%]</code> Consideration of leftover ingredients and batch cooking opportunities
+- [ ] <code>[66%]</code> PDDL-based meal planner for comprehensive meal contingent plan generation
+- [ ] <code>[40%]</code> Seamless integration with FLP's generalized action planning systems
+- [ ] <code>[20%]</code> Consideration of leftover ingredients and batch cooking opportunities
 
 ### Customization
-- [ ] <code>[0%]</code> Ability to swap out suggested meals
-- [ ] <code>[0%]</code> Manual addition of custom meals to the plan
 - [ ] <code>[50%]</code> Fine-tuning of nutritional targets and preferences
+- Food style and preference learning
+- Estimating when users might tire of specific recipes or ingredients
 
 ### Optimization
 - ✅ Basic cost optimization
-- [ ] <code>[0%]</code> Advanced multi-objective optimization (nutrition, cost, preparation time, variety)
+- Freezer cooking support (reduces cost and prep time by ≥4X)
+- 🚧 Advanced multi-objective optimization (nutrition, cost, preparation time, variety)
+
+### Nutrition Lookup
+- ✅ Using FDC CSVs converted to Prolog KB (Food Data Central)
+- ✅ Using Nutritionix (working but offline due to air-gapping development server)
 
 ## 6. Recipe Management
 
 ### Recipe Database
-- ✅ Integration of 300,000+ recipes from SOAR Recipe Archive
-- [ ] <code>[0%]</code> User ability to add custom recipes
+- ✅ Integration of 300,000+ recipes (150,000 from SOAR Recipe Archive, additional 150,000 planned)
+- 🚧 User ability to add custom recipes
 - [ ] <code>[10%]</code> Automatic nutritional analysis of custom recipes
 
 ### Recipe Recommendations
-- [ ] <code>[0%]</code> Basic collaborative filtering for personalized suggestions
-- [ ] <code>[20%]</code> Advanced ML-based recommendation system considering nutritional needs, preferences, and past behavior
+- 🚧 Recommender system / collaborative filtering over recipes, ingredients, etc.
 
-### Recipe Scaling and Adjustment
-- [ ] <code>[0%]</code> Automatic scaling of recipes based on serving size
-- [ ] <code>[10%]</code> Intelligent ingredient substitution suggestions
+### Recipe Parsing and Conversion
+- [ ] <code>[50%]</code> Automatic conversion of recipes to Behavior Trees (BTs)
+  - Using CURD (Carnegie Mellon University Recipe Database)
+  - Open-SESAME parser
+- Parser for converting natural language recipes into planning problems
 
 ## 7. Inventory Management
 
 ### Pantry Tracking
 - ✅ Manual inventory input
 - ✅ Barcode scanning for quick item addition
-- [ ] <code>[0%]</code> Automatic inventory deduction based on meal plan usage
+- 🚧 Automatic inventory deduction based on meal plan usage
 
 ### Expiration Management
 - [ ] <code>[10%]</code> Tracking of product expiration dates
 - [ ] <code>[10%]</code> Smart notifications for items nearing expiration
-- [ ] <code>[0%]</code> Suggestion of recipes to use soon-to-expire items
+- Planning tool to avoid food spoilage and expiration in various storage conditions
+
+### Fridge/Freezer Monitoring
+- ✅ Temperature and door sensors for fridges and freezers
+- ✅ Tracking pantry inventory changes
+- ✅ Ensuring food safety
+- [ ] <code>[20%]</code> Follow-up dialog regarding intent when fridge and freezer accessed
 
 ### Shopping List Generation
 - ✅ Manual addition and removal of items
-- [ ] <code>[0%]</code> Automatic list creation based on meal plans and inventory
-- [ ] <code>[0%]</code> Integration with store layouts for optimized shopping routes
+- 🚧 Automatic list creation based on meal plans and inventory
+
+### Receipt Tracking
+- [ ] <code>[50%]</code> Receipt tracker
+- [ ] <code>[25%]</code> Bill splitter for shared groceries
 
 ## 8. Nutrition Analysis
 
 ### Nutritional Calculations
 - ✅ Calculation of macronutrients (protein, carbs, fats) and calories
-- [ ] <code>[0%]</code> Tracking of essential vitamins and minerals
-- [ ] <code>[0%]</code> Consideration of bioavailability and nutrient interactions
+- [ ] <code>[20%]</code> Logging and planning of macros
+- 🚧 Tracking of essential vitamins and minerals
+- 🚧 Consideration of bioavailability and nutrient interactions
 
 ### Reporting and Visualization
 - ✅ Basic nutritional overview of meal plans
-- [ ] <code>[0%]</code> Detailed nutritional reports and trend analysis
-- [ ] <code>[0%]</code> Visual representations of nutritional balance
+- [ ] <code>[0%]</code] Detailed nutritional reports and trend analysis
+- 🚧 Visual representations of nutritional balance
 
-### Goal Setting and Tracking
-- [ ] <code>[0%]</code> Basic goal setting for macronutrients
-- [ ] <code>[0%]</code> Advanced health goal tracking and recommendations
+### User Modeling and Health Tracking
+- [ ] <code>[40%]</code> Self-discipline coach for hitting macros and understanding food psychology
+- Checking for common symptoms known to affect the user (e.g., GERD, lactose intolerance)
+- Inference of food sensitivities
+- Nutritional temporal records with privacy preservation
+- Integration with health temporal records for empirical analysis
+- Detection and allowance for genetic factors affecting diet and health
 
 ## 9. Shopping and Ordering
 
 ### Grocery Store Integration
 - [ ] <code>[10%]</code> Integration with major online grocery retailers
-- [ ] <code>[0%]</code> Price comparison across multiple stores
-- [ ] <code>[0%]</code> Support for local and specialty stores
+- 🚧 Price comparison across multiple stores
+- 🚧 Support for local and specialty stores
 
 ### Order Optimization
-- [ ] <code>[0%]</code> Basic order consolidation to minimize delivery fees
-- [ ] <code>[0%]</code> Advanced order splitting for cost optimization across stores
+- 🚧 Basic order consolidation to minimize delivery fees
+- 🚧 Advanced order splitting for cost optimization across stores
 
 ### Delivery Tracking
 - ✅ Basic order status tracking
-- [ ] <code>[0%]</code> Integration with delivery services for real-time updates
+- 🚧 Integration with delivery services for real-time updates
 
 ## 10. Special Diets and Restrictions
 
+### Food Ontology
+- [ ] <code>[33%]</code> Comprehensive food ontology development
+  - Food properties encoded into Prolog factbase
+  - Medical properties such as allergies
+  - Food storage duration knowledge
+  - Food similarity using word embeddings
+  - Food substitutions (changing, adding, or canceling)
+  - Normalization / mapping NL descriptions to entities in a KB
+
 ### Supported Diets
-- [ ] <code>[0%]</code> Vegetarian and vegan
-- [ ] <code>[0%]</code> Gluten-free
-- [ ] <code>[0%]</code> Ketogenic
-- [ ] <code>[0%]</code> Paleo
-- [ ] <code>[0%]</code> Low-FODMAP
+- 🚧 Vegetarian and vegan
+- 🚧 Gluten-free
+- 🚧 Ketogenic
+- 🚧 Paleo
+- 🚧 Low-FODMAP
+- Support for ethical diets (e.g., vegan, pescatarian)
+- Support for medical diets (e.g., diabetic, gall bladder issues)
 
 ### Allergy Management
-- [ ] <code>[0%]</code> Common allergen avoidance (e.g., nuts, dairy, shellfish)
-- [ ] <code>[0%]</code> Customizable allergen profiles
-- [ ] <code>[0%]</code> Cross-contamination risk assessment
+- 🚧 Common allergen avoidance (e.g., nuts, dairy, shellfish)
+- 🚧 Customizable allergen profiles
+- 🚧 Cross-contamination risk assessment
 
 ### Medical Diet Support
 - [ ] <code>[10%]</code> Diabetic-friendly meal planning
 - [ ] <code>[10%]</code> Low-sodium diet planning
-- [ ] <code>[0%]</code> Renal diet support
+- 🚧 Renal diet support
 
 ## 11. AI and Machine Learning
 
 ### Personalization
-- [ ] <code>[0%]</code> Basic preference learning from user interactions
-- [ ] <code>[0%]</code> Advanced taste profile modeling
-- [ ] <code>[0%]</code> Predictive modeling of user satisfaction
+- 🚧 Basic preference learning from user interactions
+- 🚧 Advanced taste profile modeling
+- 🚧 Predictive modeling of user satisfaction
 
 ### Natural Language Processing
 - [ ] <code>[50%]</code> Recipe parsing and normalization
@@ -207,45 +254,48 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 
 ### Computer Vision
 - ✅ Barcode recognition for product identification
-- [ ] <code>[0%]</code> Image-based food recognition and logging
+- 🚧 Image-based food recognition and logging
 
 ## 12. Data Sources and Integration
 
 ### Food Databases
 - ✅ USDA Food Data Central
 - ✅ Open Food Facts
-- [ ] <code>[0%]</code> Specialized databases for international cuisines
+- ✅ Nutritionix
+- 🚧 Specialized databases for international cuisines
 
 ### Recipe Sources
-- ✅ SOAR Recipe Archive
-- [ ] <code>[0%]</code> Integration with popular recipe websites
-- [ ] <code>[0%]</code> User-generated recipe repository
+- ✅ SOAR Recipe Archive (150,000 recipes)
+- 🚧 Integration with popular recipe websites
+- 🚧 User-generated recipe repository
 
 ### External Integrations
-- [ ] <code>[0%]</code> Fitness tracker data for personalized energy requirements
-- [ ] <code>[0%]</code> Weather data for seasonal recipe suggestions
+- [ ] <code>[0%]</code] Fitness tracker data for personalized energy requirements
+- [ ] <code>[0%]</code] Weather data for seasonal recipe suggestions
+- Integration with Hetionet for empirical analysis of nutritional factors associated with medical conditions
 
 ## 13. Privacy and Security
 
 ### Data Protection
-- [ ] <code>[0%]</code> Encryption of user data at rest and in transit
+- 🚧 Encryption of user data at rest and in transit
+- Privacy-preserving nutritional temporal records
 
 ### User Controls
-- [ ] <code>[0%]</code> Granular privacy settings for data sharing
-- [ ] <code>[0%]</code> Data export and deletion capabilities
+- 🚧 Granular privacy settings for data sharing
+- 🚧 Data export and deletion capabilities
 
 ### Compliance
-- [ ] <code>[0%]</code> GDPR compliance for EU users
-- [ ] <code>[0%]</code> CCPA compliance for California residents
+- 🚧 GDPR compliance for EU users
+- 🚧 CCPA compliance for California residents
 
 ## 14. Customization and Extensibility
 
 ### API Access
-- [ ] <code>[0%]</code> RESTful API for third-party integrations
-- [ ] <code>[0%]</code> WebHooks for real-time data updates
+- 🚧 RESTful API for third-party integrations
+- 🚧 WebHooks for real-time data updates
 
 ### Plugin System
-- [ ] <code>[0%]</code> Framework for community-developed plugins
+- 🚧 Framework for community-developed plugins
 
 ## 15. Troubleshooting
 
@@ -256,7 +306,7 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 
 ### Logging and Diagnostics
 - ✅ Detailed application logs
-- [ ] <code>[0%]</code> User-accessible diagnostic tools
+- 🚧 User-accessible diagnostic tools
 
 ### Support Channels
 - ✅ Community forums for peer support
@@ -267,6 +317,14 @@ Gourmet is built on a modular architecture that allows for easy expansion and in
 - Expansion of the food ontology to cover global cuisines and ingredients
 - Development of a companion mobile app for real-time meal tracking and adjustments
 - Implementation of a gamification system to encourage healthy eating habits
+- Semi-automatic Rapid Knowledge Formation (RKF) of textual knowledge bases regarding food safety
+- Integration with transportation and building hours APIs for complex food provision scenarios (e.g., homelessness, lack of transportation)
+- Automatic detection of inventory items which have been recalled or linked to disease outbreaks
+- Proper handling of food items lacking barcodes
+- Emergency food and water provision management
+  - Stocking enough provisions to survive n-months
+  - Rotating emergency food and water provisions
+- Food pantry patronage support
 
 ## 17. Contributing
 
