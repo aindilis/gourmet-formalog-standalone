@@ -39,7 +39,7 @@ Gourmet is part of the larger Free Life Planner (FLP) project, which aims to cre
 
 ## 🚀 Getting Started
 
-Gourmet is now available via Docker Hub: `docker pull adougher9/gourmet-formalog-standalone`
+Gourmet (development version, not yet ready for real use) is now available via Docker Hub: `docker pull adougher9/gourmet-formalog-standalone`
 
 For detailed installation instructions, please see the [INSTALL.md](INSTALL.md) file.
 
